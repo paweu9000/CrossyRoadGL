@@ -1,9 +1,16 @@
 #include <iostream>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "game.h"
 
 int main()
 {
-    std::cout << "Hello";
+    auto game = new Game();
+    if (game->initialize())
+    {
+        game->run_loop();
+    }
+    else
+    {
+        std::cout << "ERROR::INITIALIZING::GAME";
+    }
     return 0;
 }
