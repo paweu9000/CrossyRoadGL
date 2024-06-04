@@ -1,6 +1,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "shader.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class Game
 {
@@ -14,11 +17,16 @@ private:
     void process_input();
     void update();
     void draw();
+    void calculate_delta();
     GLFWwindow* window;
     int width;
     int height;
-    float vertices[9];
+    float vertices[18*6*3];
     unsigned int VAO, VBO;
     unsigned int vertexShader, fragmentShader;
     Shader* shaderProgram;
+    float lastFrame, deltaTime;
+    glm::mat4 projection;
+    glm::mat4 model;
+    glm::mat4 view;
 };
