@@ -14,7 +14,7 @@ public:
     void run_loop();
 
 private:
-    void process_input();
+    void process_input(GLFWwindow* window);
     void update();
     void draw();
     void calculate_delta();

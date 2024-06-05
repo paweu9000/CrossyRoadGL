@@ -114,15 +114,34 @@ void Game::run_loop()
     while (!glfwWindowShouldClose(this->window))
     {
         calculate_delta();
-        process_input();
+        process_input(this->window);
         update();
         draw();
     }
 }
 
-void Game::process_input()
+void Game::process_input(GLFWwindow* window)
 {
-
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+    {
+        model = glm::rotate(model, deltaTime*3, glm::vec3(-1.0f, 0.0f, 0.0f));
+        view = glm::translate(view, glm::vec3(0.f, 0.f, -deltaTime*3));
+    }
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+    {
+        model = glm::rotate(model, deltaTime*3, glm::vec3(1.0f, 0.0f, 0.0f));
+        view = glm::translate(view, glm::vec3(0.f, 0.f, deltaTime*3));
+    }
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+    {
+        model = glm::rotate(model, deltaTime*3, glm::vec3(0.0f, -1.0f, 0.0f));
+        view = glm::translate(view, glm::vec3(deltaTime*3, 0.f, 0.f));
+    }
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+    {
+        model = glm::rotate(model, deltaTime*3, glm::vec3(0.0f, 1.0f, 0.0f));
+        view = glm::translate(view, glm::vec3(-deltaTime*3, 0.f, 0.f));
+    }
 }
 
 void Game::update()
@@ -136,7 +155,6 @@ void Game::draw()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     shaderProgram->use();
-    model = glm::rotate(model, deltaTime, glm::vec3(-1.0f, 0.0f, 0.0f));
     shaderProgram->set_mat4("model", this->model);
     shaderProgram->set_mat4("view", this->view);
     shaderProgram->set_mat4("projection", this->projection);
