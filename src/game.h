@@ -4,6 +4,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <vector>
 
 class Game
 {
@@ -22,11 +23,15 @@ private:
     int width;
     int height;
     float vertices[18*6*3];
-    unsigned int VAO, VBO;
+    float levelVertices[36];
+    unsigned int VAO[2], VBO[2];
     unsigned int vertexShader, fragmentShader;
-    Shader* shaderProgram;
+    std::vector<Shader*> shaderPrograms;
     float lastFrame, deltaTime;
     glm::mat4 projection;
     glm::mat4 model;
     glm::mat4 view;
+    glm::mat4 levelProjection;
+    glm::mat4 levelModel;
+    glm::mat4 levelView;
 };
