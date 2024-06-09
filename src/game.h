@@ -6,6 +6,11 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <vector>
 
+enum class Direction
+{
+    NORTH, EAST, WEST, SOUTH, NONE
+};
+
 class Game
 {
 public:
@@ -19,6 +24,7 @@ private:
     void update();
     void draw();
     void calculate_delta();
+    void reset_direction();
     GLFWwindow* window;
     int width;
     int height;
@@ -34,4 +40,7 @@ private:
     glm::mat4 levelProjection;
     glm::mat4 levelModel;
     glm::mat4 levelView;
+    Direction direction;
+    bool isMoving;
+    float movementAngle;
 };
