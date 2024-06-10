@@ -5,6 +5,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <vector>
+#include "level.h"
 
 enum class Direction
 {
@@ -26,20 +27,16 @@ private:
     void calculate_delta();
     void reset_direction();
     GLFWwindow* window;
+    Level* level;
     int width;
     int height;
     float vertices[18*6*3];
-    float levelVertices[36];
-    unsigned int VAO[2], VBO[2];
-    unsigned int vertexShader, fragmentShader;
-    std::vector<Shader*> shaderPrograms;
+    unsigned int VAO, VBO;
+    Shader* shaderProgram;
     float lastFrame, deltaTime;
     glm::mat4 projection;
     glm::mat4 model;
     glm::mat4 view;
-    glm::mat4 levelProjection;
-    glm::mat4 levelModel;
-    glm::mat4 levelView;
     Direction direction;
     bool isMoving;
     float movementAngle;
