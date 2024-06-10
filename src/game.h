@@ -31,7 +31,6 @@ private:
     int width;
     int height;
     float vertices[18*6*3];
-    float levelVertices[36];
     unsigned int VAO, VBO;
     Shader* shaderProgram;
     float lastFrame, deltaTime;
