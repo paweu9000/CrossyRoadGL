@@ -10,6 +10,7 @@ add_executable(${PROJECT_NAME}
     src/game.cpp
     src/shader.cpp
     src/level.cpp
+    src/entity.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

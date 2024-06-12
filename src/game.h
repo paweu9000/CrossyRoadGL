@@ -6,11 +6,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <vector>
 #include "level.h"
-
-enum class Direction
-{
-    NORTH, EAST, WEST, SOUTH, NONE
-};
+#include "entity.h"
 
 class Game
 {
@@ -30,14 +26,7 @@ private:
     Level* level;
     int width;
     int height;
-    float vertices[18*6*3];
-    unsigned int VAO, VBO;
     Shader* shaderProgram;
+    Entity* player;
     float lastFrame, deltaTime;
-    glm::mat4 projection;
-    glm::mat4 model;
-    glm::mat4 view;
-    Direction direction;
-    bool isMoving;
-    float movementAngle;
 };
