@@ -1,14 +1,15 @@
 #include "level.h"
 
-Level::Level() :
-vertices{
+Level::Level()
+{
+    vertices = {
     -20.f, -20.f, -1.f, 1.f, 0.f, 0.0f,
     20.f, -20.f, -1.f, 0.0f, 1.f, 1.f,
     20.f,  20.f, -1.f, 1.f, 1.f, 0.0f,
     20.f,  20.f, -1.f, 1.f, 1.f, 0.0f,
     -20.f,  20.f, -1.f, 0.f, 0.f, 1.f,
     -20.f, -20.f, -1.f, 1.f, 0.f, 0.0f,
-}{
+    };
     this->shader = new Shader("src/shaders/level_vertex.vs", "src/shaders/level_fragment.fs");
     this->projection = glm::mat4(1.f);
     this->model = glm::mat4(1.f);
@@ -21,14 +22,14 @@ vertices{
     glGenBuffers(1, &this->VBO);
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), &vertices.front(), GL_STATIC_DRAW);
     glVertexAttribPointer(10, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(10);
     glVertexAttribPointer(11, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3*sizeof(float)));
     glEnableVertexAttribArray(11);
 }
 
-const float* Level::get_vertices() const {
+const std::vector<float> Level::get_vertices() const {
     return this->vertices;
 }
 

@@ -1,7 +1,8 @@
 #include "entity.h"
 
-Entity::Entity() :
-vertices{
+Entity::Entity()
+{
+    vertices = {
     // Triangles         // Colors
     -0.5f, -0.5f, -0.5f, 1.f, 0.f, 0.f,
      0.5f, -0.5f, -0.5f, 1.f, 0.f, 0.f,
@@ -44,8 +45,7 @@ vertices{
      0.5f,  0.5f,  0.5f, 1.f, 0.3f, 0.3f,
     -0.5f,  0.5f,  0.5f, 1.f, 0.3f, 0.3f,
     -0.5f,  0.5f, -0.5f, 1.f, 0.3f, 0.3f
-}
-{
+    };
     this->isMoving = false;
     this->movementAngle = 0.f;
     this->direction = Direction::NONE;
@@ -61,7 +61,7 @@ vertices{
     glGenBuffers(1, &this->VBO);
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), &vertices.front(), GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3*sizeof(float)));
