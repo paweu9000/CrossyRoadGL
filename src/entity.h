@@ -1,10 +1,6 @@
 #pragma once
 #include "shader.h"
 #include "element.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
 enum class Direction
 {
@@ -24,4 +20,6 @@ private:
     Direction direction;
     bool isMoving;
     float movementAngle;
+    glm::vec3 cubePosition;
+    glm::quat cubeRotation;
 };

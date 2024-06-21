@@ -60,7 +60,7 @@ void Game::run_loop()
         process_input(this->window);
         update();
         draw();
-        player->reset_direction();
+        // player->reset_direction();
     }
 }
 
