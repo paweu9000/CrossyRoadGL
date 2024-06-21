@@ -1,16 +1,12 @@
 #pragma once
-#include "element.h"
-#include "shader.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "levelelement.h"
 
-class Level : protected Element
+class Level
 {
 public:
     Level();
-    const std::vector<float> get_vertices() const;
     void update();
     void draw();
+private:
+    std::vector<LevelElement*> elements;
 };

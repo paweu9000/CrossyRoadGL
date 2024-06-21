@@ -12,6 +12,7 @@ add_executable(${PROJECT_NAME}
     src/level.cpp
     src/entity.cpp
     src/element.cpp
+    src/levelelement.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
