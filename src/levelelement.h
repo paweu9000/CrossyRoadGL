@@ -13,5 +13,6 @@ public:
     void draw() override;
     void update();
 private:
+    void bind_vertices();
     ObjectType type;
 };
