@@ -1,26 +1,11 @@
 #include "levelelement.h"
+#include "constants.h"
 
 LevelElement::LevelElement(ObjectType type)
 {
     this->type = type;
 
-    vertices = {
-
-    -20.f, -5.f,  3.f, 0.0078f, 0.6392f, 0.1922f,
-     20.f, -5.f,  3.f, 0.0078f, 0.6392f, 0.1922f,
-     20.f,  5.f,  3.f, 0.0078f, 0.6392f, 0.1922f,
-     20.f,  5.f,  3.f, 0.0078f, 0.6392f, 0.1922f,
-    -20.f,  5.f,  3.f, 0.0078f, 0.6392f, 0.1922f,
-    -20.f, -5.f,  3.f, 0.0078f, 0.6392f, 0.1922f,
-
-    -20.f,  5.f,  3.f, 0.0f, 0.3922f, 0.0f,
-    -20.f,  5.f, -3.f, 0.0f, 0.3922f, 0.0f,
-    -20.f, -5.f, -3.f, 0.0f, 0.3922f, 0.0f,
-    -20.f, -5.f, -3.f, 0.0f, 0.3922f, 0.0f,
-    -20.f, -5.f,  3.f, 0.0f, 0.3922f, 0.0f,
-    -20.f,  5.f,  3.f, 0.0f, 0.3922f, 0.0f
-};
-
+    vertices = Constant::grass;
 
     this->shader = new Shader("src/shaders/level_vertex.vs", "src/shaders/level_fragment.fs");
     
