@@ -28,5 +28,6 @@ private:
     int height;
     Shader* shaderProgram;
     Player* player;
+    std::vector<Entity*> entities;
     float lastFrame, deltaTime;
 };

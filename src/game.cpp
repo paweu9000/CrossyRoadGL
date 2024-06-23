@@ -1,5 +1,6 @@
 #include "game.h"
 #include <iostream>
+#include "enemy.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -48,6 +49,9 @@ bool Game::initialize()
 
     level = new Level();
     player = new Player();
+    entities.push_back(player);
+    entities.push_back(new Enemy(Direction::EAST));
+    entities.push_back(new Enemy(Direction::WEST));
 
     return true;
 }
@@ -86,7 +90,10 @@ void Game::process_input(GLFWwindow* window)
 void Game::update()
 {
     this->level->update();
-    this->player->update(deltaTime);
+    for (const auto& entity: entities)
+    {
+        entity->update(deltaTime);
+    }
 }
 
 void Game::draw()
@@ -95,7 +102,10 @@ void Game::draw()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     this->level->draw();
-    this->player->draw();
+    for (const auto& entity: entities)
+    {
+        entity->draw();
+    }
 
     glfwSwapBuffers(window);
     glfwPollEvents();
