@@ -7,19 +7,12 @@ enum class Direction
     NORTH, EAST, WEST, SOUTH, NONE
 };
 
-class Entity : protected Element
+class Entity : public Element
 {
 public:
     Entity();
-    void update(float deltaTime);
-    void draw() override;
+    virtual void update(float deltaTime);
     void set_direction(Direction direction);
-    void reset_direction();
-    bool is_moving();
-private:
+protected:
     Direction direction;
-    bool isMoving;
-    float movementAngle;
-    glm::vec3 cubePosition;
-    glm::quat cubeRotation;
 };

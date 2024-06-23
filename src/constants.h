@@ -4,47 +4,107 @@
 namespace Constant
 {
     const std::vector<float> player = {
-        -0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-        0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-        0.5f,  0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
-        0.5f,  0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-        -0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+        // Front face
+        -0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-left corner
+        0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-right corner
+        0.0f,  0.0f,  0.5f, 1.0f, 0.0f, 0.0f,  // Middle
 
-        -0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,
-        0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,
-        0.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f,
-        0.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,
-        -0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,
+        0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-right corner
+        0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-right corner
+        0.0f,  0.0f,  0.5f, 1.0f, 0.0f, 0.0f,  // Middle
 
-        -0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-        -0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
-        -0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
-        -0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,
+        0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-right corner
+        -0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-left corner
+        0.0f,  0.0f,  0.5f, 1.0f, 0.0f, 0.0f,  // Middle
 
-        0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,
-        0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-        0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
-        0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
-        0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,
-        0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-left corner
+        -0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-left corner
+        0.0f,  0.0f,  0.5f, 1.0f, 0.0f, 0.0f,  // Middle
 
-        -0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-        0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-        0.5f, -0.5f,  0.5f, 1.0f, 0.0f, 0.0f,
-        0.5f, -0.5f,  0.5f, 1.0f, 0.0f, 0.0f,
-        -0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,
-        -0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+        // Back face
+        -0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-left corner
+        0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-right corner
+        0.0f,  0.0f, -0.5f, 1.0f, 0.0f, 0.0f,  // Middle
 
-        -0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-        0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-        0.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f,
-        0.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f 
+        0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-right corner
+        0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Top-right corner
+        0.0f,  0.0f, -0.5f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Top-right corner
+        -0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Top-left corner
+        0.0f,  0.0f, -0.5f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        -0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Top-left corner
+        -0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-left corner
+        0.0f,  0.0f, -0.5f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        // Left face
+        -0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-left corner
+        -0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-right corner
+        -0.5f,  0.0f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        -0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-right corner
+        -0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-right corner
+        -0.5f,  0.0f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        -0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-right corner
+        -0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Top-left corner
+        -0.5f,  0.0f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        -0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Top-left corner
+        -0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-left corner
+        -0.5f,  0.0f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        // Right face
+        0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-left corner
+        0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-right corner
+        0.5f,  0.0f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-right corner
+        0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-right corner
+        0.5f,  0.0f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-right corner
+        0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Top-left corner
+        0.5f,  0.0f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Top-left corner
+        0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-left corner
+        0.5f,  0.0f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        // Top face
+        -0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-left corner
+        0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-right corner
+        0.0f,  0.5f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-right corner
+        0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-right corner
+        0.0f,  0.5f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-right corner
+        -0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-left corner
+        0.0f,  0.5f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        -0.5f,  0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-left corner
+        -0.5f,  0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-left corner
+        0.0f,  0.5f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        // Bottom face
+        -0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-left corner
+        0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-right corner
+        0.0f, -0.5f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-right corner
+        0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-right corner
+        0.0f, -0.5f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-right corner
+        -0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-left corner
+        0.0f, -0.5f,  0.0f, 1.0f, 0.0f, 0.0f,  // Middle
+
+        -0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Top-left corner
+        -0.5f, -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-left corner
+        0.0f, -0.5f,  0.0f, 1.0f, 0.0f, 0.0f   // Middle
     };
 
     const std::vector<float> grass = {
