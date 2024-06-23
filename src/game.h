@@ -6,7 +6,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <vector>
 #include "level.h"
-#include "entity.h"
+#include "player.h"
 
 class Game
 {
@@ -27,6 +27,6 @@ private:
     int width;
     int height;
     Shader* shaderProgram;
-    Entity* player;
+    Player* player;
     float lastFrame, deltaTime;
 };

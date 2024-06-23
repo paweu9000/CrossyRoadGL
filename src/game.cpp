@@ -47,7 +47,7 @@ bool Game::initialize()
     shaderProgram = new Shader("src/shaders/vertex.vs", "src/shaders/fragment.fs");
 
     level = new Level();
-    player = new Entity();
+    player = new Player();
 
     return true;
 }
@@ -60,7 +60,6 @@ void Game::run_loop()
         process_input(this->window);
         update();
         draw();
-        // player->reset_direction();
     }
 }
 
