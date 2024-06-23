@@ -14,6 +14,7 @@ add_executable(${PROJECT_NAME}
     src/element.cpp
     src/levelelement.cpp
     src/player.cpp
+    src/enemy.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

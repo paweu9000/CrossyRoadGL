@@ -107,6 +107,110 @@ namespace Constant
         0.0f, -0.5f,  0.0f, 1.0f, 0.0f, 0.0f   // Middle
     };
 
+    const std::vector<float> enemy = {
+        // Front face
+        -1.0f, -0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-left corner (Darker Blue)
+        1.0f, -0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-right corner (Darker Blue)
+        0.0f,  0.0f,  0.5f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        1.0f, -0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-right corner (Darker Blue)
+        1.0f,  0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-right corner (Darker Blue)
+        0.0f,  0.0f,  0.5f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        1.0f,  0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-right corner (Darker Blue)
+        -1.0f,  0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-left corner (Darker Blue)
+        0.0f,  0.0f,  0.5f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        -1.0f,  0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-left corner (Darker Blue)
+        -1.0f, -0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-left corner (Darker Blue)
+        0.0f,  0.0f,  0.5f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        // Back face
+        -1.0f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-left corner (Darker Blue)
+        1.0f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-right corner (Darker Blue)
+        0.0f,  0.0f, -0.5f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        1.0f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-right corner (Darker Blue)
+        1.0f,  0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Top-right corner (Darker Blue)
+        0.0f,  0.0f, -0.5f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        1.0f,  0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Top-right corner (Darker Blue)
+        -1.0f,  0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Top-left corner (Darker Blue)
+        0.0f,  0.0f, -0.5f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        -1.0f,  0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Top-left corner (Darker Blue)
+        -1.0f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-left corner (Darker Blue)
+        0.0f,  0.0f, -0.5f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        // Left face
+        -1.0f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-left corner (Darker Blue)
+        -1.0f, -0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-right corner (Darker Blue)
+        -1.0f,  0.0f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        -1.0f, -0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-right corner (Darker Blue)
+        -1.0f,  0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-right corner (Darker Blue)
+        -1.0f,  0.0f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        -1.0f,  0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-right corner (Darker Blue)
+        -1.0f,  0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Top-left corner (Darker Blue)
+        -1.0f,  0.0f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        -1.0f,  0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Top-left corner (Darker Blue)
+        -1.0f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-left corner (Darker Blue)
+        -1.0f,  0.0f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        // Right face
+        1.0f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-left corner (Darker Blue)
+        1.0f, -0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-right corner (Darker Blue)
+        1.0f,  0.0f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        1.0f, -0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-right corner (Darker Blue)
+        1.0f,  0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-right corner (Darker Blue)
+        1.0f,  0.0f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        1.0f,  0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-right corner (Darker Blue)
+        1.0f,  0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Top-left corner (Darker Blue)
+        1.0f,  0.0f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        1.0f,  0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Top-left corner (Darker Blue)
+        1.0f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-left corner (Darker Blue)
+        1.0f,  0.0f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        // Top face
+        -1.0f,  0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-left corner (Darker Blue)
+        1.0f,  0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-right corner (Darker Blue)
+        0.0f,  0.5f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        1.0f,  0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-right corner (Darker Blue)
+        1.0f,  0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-right corner (Darker Blue)
+        0.0f,  0.5f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        1.0f,  0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-right corner (Darker Blue)
+        -1.0f,  0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-left corner (Darker Blue)
+        0.0f,  0.5f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        -1.0f,  0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-left corner (Darker Blue)
+        -1.0f,  0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-left corner (Darker Blue)
+        0.0f,  0.5f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        // Bottom face
+        -1.0f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-left corner (Darker Blue)
+        1.0f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-right corner (Darker Blue)
+        0.0f, -0.5f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        1.0f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-right corner (Darker Blue)
+        1.0f, -0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-right corner (Darker Blue)
+        0.0f, -0.5f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        1.0f, -0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-right corner (Darker Blue)
+        -1.0f, -0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-left corner (Darker Blue)
+        0.0f, -0.5f,  0.0f, 0.5f, 0.5f, 1.0f,  // Middle (Light Blue)
+
+        -1.0f, -0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Top-left corner (Darker Blue)
+        -1.0f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-left corner (Darker Blue)
+        0.0f, -0.5f,  0.0f, 0.5f, 0.5f, 1.0f   // Middle (Light Blue)
+    };
+
     const std::vector<float> grass = {
        -20.f, -5.f,  3.f, 0.0f, 0.3922f, 0.0f,  // Bottom left (dark green)
         20.f, -5.f,  3.f, 0.0f, 0.3922f, 0.0f,   // Bottom right (dark green)
