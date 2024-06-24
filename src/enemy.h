@@ -9,4 +9,5 @@ public:
     void draw() override;
 private:
     float movement_speed;
+    void reset_position();
 };
