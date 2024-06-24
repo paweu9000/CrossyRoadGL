@@ -22,6 +22,7 @@ private:
     void draw();
     void calculate_delta();
     void reset_direction();
+    bool check_collision();
     GLFWwindow* window;
     Level* level;
     int width;
