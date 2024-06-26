@@ -458,4 +458,7 @@ namespace Constant
         4.f,  2.5f,  3.f, 0.9f, 0.9f, 0.9f,
     };
 
+    const float player_speed = 7;
+    const float enemy_speed = 10;
+
 }

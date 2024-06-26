@@ -10,7 +10,7 @@ class LevelElement : protected Element
 {
 public:
     LevelElement(ObjectType type);
-    void draw() override;
+    void draw(glm::mat4 view) override;
     void update();
 private:
     void bind_vertices();

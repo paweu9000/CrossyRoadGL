@@ -20,25 +20,25 @@ Enemy::Enemy(Direction direction)
 
 void Enemy::update(float deltaTime)
 {
-    if (this->view[3][0] > 24.f || this->view[3][0] < -24.f) reset_position();
-    float movement_speed = deltaTime * 4;
+    if (this->model[3][0] > 18.f || this->model[3][0] < -18.f) reset_position();
+    float movement_speed = deltaTime * Constant::enemy_speed;
     switch (this->direction)
     {
     case Direction::EAST:
-        this->view = glm::translate(glm::mat4(1.f), glm::vec3(movement_speed, 0.f, 0.f)) * view;
+        this->model = glm::translate(glm::mat4(1.f), glm::vec3(movement_speed, 0.f, 0.f)) * model;
         break;
     case Direction::WEST:
-        this->view = glm::translate(glm::mat4(1.f), glm::vec3(-movement_speed, 0.f, 0.f)) * view;
+        this->model = glm::translate(glm::mat4(1.f), glm::vec3(-movement_speed, 0.f, 0.f)) * model;
     default:
         break;
     }
 }
 
-void Enemy::draw()
+void Enemy::draw(glm::mat4 view)
 {
     shader->use();
     shader->set_mat4("model", this->model);
-    shader->set_mat4("view", this->view);
+    shader->set_mat4("view", view);
     shader->set_mat4("projection", this->projection);
     
     glBindVertexArray(this->VAO);
@@ -48,14 +48,12 @@ void Enemy::draw()
 void Enemy::reset_position()
 {
     this->model = glm::mat4(1.f);
-    this->model = glm::rotate(this->model, glm::radians(-30.f), glm::vec3(1.f, 0.f, 0.f));
-    this->view = glm::mat4(1.f);
     if (direction == Direction::EAST) 
     {
-        this->view = glm::translate(this->view, glm::vec3(-15.f, 5.f, -29.f));
+        this->model = glm::translate(this->model, glm::vec3(-18.f, 0.f, -41.f));
     }
     else
     {
-        this->view = glm::translate(this->view, glm::vec3(15.f, 2.f, -29.f));
+        this->model = glm::translate(this->model, glm::vec3(18.f, 0.f, -36.f));
     }
 }

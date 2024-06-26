@@ -15,10 +15,10 @@ void Level::update()
     }
 }
 
-void Level::draw()
+void Level::draw(glm::mat4 view)
 {
     for (const auto& element: elements)
     {
-        element->draw();
+        element->draw(view);
     }
 }

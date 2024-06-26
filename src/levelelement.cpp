@@ -8,41 +8,40 @@ LevelElement::LevelElement(ObjectType type)
 
     switch (type) {
         case ObjectType::GRASS:
-            vertices = Constant::grass;    
-            this->model = glm::translate(glm::mat4(1.0f), glm::vec3(0.f, -5.f, -35.f)) * model;
+            vertices = Constant::grass;
+            this->model = glm::translate(this->model, glm::vec3(0.f, -3.65f, -29.f));
             bind_vertices();
             break;
         case ObjectType::LINE:
             vertices = Constant::lines;
-            this->model = glm::translate(glm::mat4(1.0f), glm::vec3(0.f, -5.f, -34.7f)) * model;
-            view = glm::translate(glm::mat4(1.f), glm::vec3(5.f, 5.f, -2.7f)) * view;
+            this->model = glm::translate(glm::mat4(1.0f), glm::vec3(4.5f, -3.60f, -35.5f)) * model;
             bind_vertices();
             break;
         case ObjectType::ROAD:
             vertices = Constant::road;
-            this->model = glm::translate(glm::mat4(1.0f), glm::vec3(0.f, -5.f, -35.f)) * model;
-            view = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 8.f, -4.5f)) * view;
+            this->model = glm::translate(glm::mat4(1.0f), glm::vec3(0.f, -3.65f, -39.f)) * model;
             bind_vertices();
             break;
         default:
             break;
     }
-    this->model = glm::rotate(this->model, glm::radians(-30.f), glm::vec3(1.f, 0.f, 0.f));
+    this->model = glm::rotate(this->model, glm::radians(-90.f), glm::vec3(1.f, 0.f, 0.f));
 }
 
 void LevelElement::update()
 {
+    
+}
+
+void LevelElement::draw(glm::mat4 view)
+{
+    shader->use();
     shader->use();
     shader->set_mat4("model", this->model);
-    shader->set_mat4("view", this->view);
+    shader->set_mat4("view", view);
     shader->set_mat4("projection", this->projection);
     auto color = cos(glfwGetTime());
     shader->set_float("colorChange", color < 0.8f ? 0.8f : color);
-}
-
-void LevelElement::draw()
-{
-    shader->use();
     glBindVertexArray(this->VAO);
     glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 6);
 }

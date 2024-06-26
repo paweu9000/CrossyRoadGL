@@ -13,7 +13,7 @@ void Entity::set_direction(Direction direction)
     this->direction = direction;
 }
 
-AABB Entity::get_AABB()
+AABB Entity::get_AABB(glm::mat4 view)
 {
     std::vector<glm::vec3> positions;
     for (int i = 0; i < vertices.size(); i += 6)
@@ -40,4 +40,14 @@ AABB Entity::get_AABB()
     }
 
     return {min, max};
+}
+
+glm::mat4 Entity::get_model() const
+{
+    return this->model;
+}
+
+Direction Entity::get_direction() const
+{
+    return this->direction;
 }
