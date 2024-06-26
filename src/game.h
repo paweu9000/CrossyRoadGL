@@ -7,6 +7,7 @@
 #include <vector>
 #include "level.h"
 #include "player.h"
+#include "camera.h"
 
 class Game
 {
@@ -29,6 +30,7 @@ private:
     int height;
     Shader* shaderProgram;
     Player* player;
+    Camera* camera;
     std::vector<Entity*> entities;
     float lastFrame, deltaTime;
 };

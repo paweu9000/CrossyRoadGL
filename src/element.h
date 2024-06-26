@@ -10,12 +10,11 @@ class Element
 {
 public:
     Element();
-    virtual void draw();
+    virtual void draw(glm::mat4 view);
 protected:
     std::vector<float> vertices;
     Shader* shader;
     unsigned int VBO, VAO;
     glm::mat4 projection;
     glm::mat4 model;
-    glm::mat4 view;
 };

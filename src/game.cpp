@@ -52,6 +52,8 @@ bool Game::initialize()
     entities.push_back(player);
     entities.push_back(new Enemy(Direction::EAST));
     entities.push_back(new Enemy(Direction::WEST));
+    
+    camera = new Camera(player);
 
     return true;
 }
@@ -97,8 +99,14 @@ void Game::update()
     if (this->check_collision())
     {
     // TODO:
+        player->show_collision(true);
     // Implement end of the game
     }
+    else
+    {
+        player->show_collision(false);
+    }
+    camera->update(player, deltaTime);
 }
 
 void Game::draw()
@@ -106,10 +114,10 @@ void Game::draw()
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    this->level->draw();
+    this->level->draw(camera->get_view());
     for (const auto& entity: entities)
     {
-        entity->draw();
+        entity->draw(camera->get_view());
     }
 
     glfwSwapBuffers(window);
@@ -125,13 +133,13 @@ void Game::calculate_delta()
 
 bool Game::check_collision()
 {
-    AABB a = player->get_AABB();
+    AABB a = player->get_AABB(camera->get_view());
 
     int meetingAxies = 0;
 
     for (int i = 1; i < entities.size(); i++)
     {
-        AABB b = entities[i]->get_AABB();
+        AABB b = entities[i]->get_AABB(camera->get_view());
         if ((a.min.x <= b.max.x && a.max.x >= b.min.x) &&
            (a.min.y <= b.max.y && a.max.y >= b.min.y) &&
            (a.min.z <= b.max.z && a.max.z >= b.min.z))

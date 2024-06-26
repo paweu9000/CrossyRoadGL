@@ -6,7 +6,7 @@ class Level
 public:
     Level();
     void update();
-    void draw();
+    void draw(glm::mat4 view);
 private:
     std::vector<LevelElement*> elements;
 };

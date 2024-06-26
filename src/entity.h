@@ -19,7 +19,9 @@ public:
     Entity();
     virtual void update(float deltaTime);
     void set_direction(Direction direction);
-    AABB get_AABB();
+    Direction get_direction() const;
+    AABB get_AABB(glm::mat4 view);
+    glm::mat4 get_model() const;
 protected:
     Direction direction;
 };
