@@ -23,7 +23,11 @@ Player::Player()
 void Player::update(float deltaTime)
 {
     if (this->direction == Direction::NONE) return;
-
+    if (this->direction != Direction::NONE && !isMoving)
+    {
+        // check if following movements will go out of bounds
+        if (move_out_of_bounds()) return;
+    }
     this->isMoving = true;
     float movement = deltaTime * Constant::player_speed;
     if (this->movementAngle + movement > glm::radians(90.f))
@@ -106,4 +110,25 @@ void Player::show_collision(bool collides)
     {
         this->shader->set_vec3("collision_color", glm::vec3(0.f, 0.f, 0.f));
     }
+}
+
+bool Player::move_out_of_bounds()
+{
+    bool outOfBounds = false;
+    switch (this->direction)
+    {
+        case Direction::SOUTH:
+            outOfBounds = this->model[3][2] + glm::radians(90.f) > -24.f;
+            break;
+        case Direction::WEST:
+            outOfBounds = this->model[3][0] - glm::radians(90.f) < -18.f;
+            break;
+        case Direction::EAST:
+            outOfBounds = this->model[3][0] + glm::radians(90.f) > 18.f;
+            break;
+        default:
+            break;
+    }
+    if (outOfBounds) this->direction = Direction::NONE;
+    return outOfBounds;
 }
