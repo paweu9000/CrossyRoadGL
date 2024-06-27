@@ -10,6 +10,7 @@ public:
     void show_collision(bool collides);
     bool is_moving();
 private:
+    bool move_out_of_bounds();
     bool isMoving;
     float movementAngle;
 };
