@@ -461,4 +461,13 @@ namespace Constant
     const float player_speed = 7;
     const float enemy_speed = 10;
 
+    const glm::vec3 grass_base_vec = glm::vec3(0.f, -3.65f, -12.f);
+    const glm::vec3 road_base_vec = glm::vec3(0.f, -3.65f, -22.f);
+    const glm::vec3 line_base_vec =  glm::vec3(4.5f, -3.60f, -18.5f);
+
+    const glm::vec3 enemy_e_vec = glm::vec3(-18.f, 0.f, -44.f);
+    const glm::vec3 enemy_w_vec = glm::vec3(18.f, 0.f, -39.f);
+
+    const float depth_offset = -20.f;
+
 }

@@ -50,8 +50,11 @@ bool Game::initialize()
     level = new Level();
     player = new Player();
     entities.push_back(player);
-    entities.push_back(new Enemy(Direction::EAST));
-    entities.push_back(new Enemy(Direction::WEST));
+    for (int i = 1; i <= 10; ++i)
+    {
+        entities.push_back(new Enemy(Direction::EAST, i));
+        entities.push_back(new Enemy(Direction::WEST, i));
+    }
     
     camera = new Camera(player);
 
@@ -74,10 +77,6 @@ void Game::process_input(GLFWwindow* window)
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS && !player->is_moving())
     {
         player->set_direction(Direction::NORTH);
-    }
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS && !player->is_moving())
-    {
-        player->set_direction(Direction::SOUTH);
     }
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS && !player->is_moving())
     {

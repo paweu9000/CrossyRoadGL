@@ -2,9 +2,12 @@
 
 Level::Level()
 {
-    this->elements.push_back(new LevelElement(ObjectType::GRASS));
-    this->elements.push_back(new LevelElement(ObjectType::ROAD));
-    this->elements.push_back(new LevelElement(ObjectType::LINE));
+    for (int i = 1; i <= 10; ++i)
+    {
+        this->elements.push_back(new LevelElement(ObjectType::GRASS, i));
+        this->elements.push_back(new LevelElement(ObjectType::ROAD, i));
+        this->elements.push_back(new LevelElement(ObjectType::LINE, i));
+    }
 }
 
 void Level::update()

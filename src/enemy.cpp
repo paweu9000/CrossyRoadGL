@@ -1,13 +1,16 @@
 #include "enemy.h"
 #include "constants.h"
 #include <iostream>
+#include <cstdlib>
 
-Enemy::Enemy(Direction direction)
+Enemy::Enemy(Direction direction, int depth)
 {
     vertices = Constant::enemy;
     this->direction = direction;
-    
+    this->depth = depth;
     this->reset_position();
+
+    this->speed_multiplier = 0.5f + static_cast<float>(rand() / (static_cast<float> (RAND_MAX / (2.0f - 0.5f))));
 
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), &vertices.front(), GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
@@ -21,7 +24,7 @@ Enemy::Enemy(Direction direction)
 void Enemy::update(float deltaTime)
 {
     if (this->model[3][0] > 18.f || this->model[3][0] < -18.f) reset_position();
-    float movement_speed = deltaTime * Constant::enemy_speed;
+    float movement_speed = deltaTime * Constant::enemy_speed * this->speed_multiplier;
     switch (this->direction)
     {
     case Direction::EAST:
@@ -50,10 +53,17 @@ void Enemy::reset_position()
     this->model = glm::mat4(1.f);
     if (direction == Direction::EAST) 
     {
-        this->model = glm::translate(this->model, glm::vec3(-18.f, 0.f, -41.f));
+        this->model = glm::translate(this->model, configure_depth(Constant::enemy_e_vec, depth));
     }
     else
     {
-        this->model = glm::translate(this->model, glm::vec3(18.f, 0.f, -36.f));
+        this->model = glm::translate(this->model, configure_depth(Constant::enemy_w_vec, depth));
     }
+}
+
+glm::vec3 Enemy::configure_depth(glm::vec3 vec, int depth)
+{
+    auto new_vec = vec;
+    new_vec[2] += Constant::depth_offset * (depth - 1);
+    return new_vec;
 }
