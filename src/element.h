@@ -12,6 +12,7 @@ public:
     Element();
     virtual void draw(glm::mat4 view);
 protected:
+    virtual glm::vec3 configure_depth(glm::vec3 vec, int depth);
     std::vector<float> vertices;
     Shader* shader;
     unsigned int VBO, VAO;

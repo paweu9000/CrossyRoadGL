@@ -2,24 +2,25 @@
 #include "constants.h"
 #include <iostream>
 
-LevelElement::LevelElement(ObjectType type)
+LevelElement::LevelElement(ObjectType type, int depth)
 {
     this->type = type;
+    this->inBounds = true;
 
     switch (type) {
         case ObjectType::GRASS:
             vertices = Constant::grass;
-            this->model = glm::translate(this->model, glm::vec3(0.f, -3.65f, -29.f));
+            this->model = glm::translate(this->model, configure_depth(Constant::grass_base_vec, depth)) * model;
             bind_vertices();
             break;
         case ObjectType::LINE:
             vertices = Constant::lines;
-            this->model = glm::translate(glm::mat4(1.0f), glm::vec3(4.5f, -3.60f, -35.5f)) * model;
+            this->model = glm::translate(glm::mat4(1.0f),  configure_depth(Constant::line_base_vec, depth)) * model;
             bind_vertices();
             break;
         case ObjectType::ROAD:
             vertices = Constant::road;
-            this->model = glm::translate(glm::mat4(1.0f), glm::vec3(0.f, -3.65f, -39.f)) * model;
+            this->model = glm::translate(glm::mat4(1.0f),  configure_depth(Constant::road_base_vec, depth)) * model;
             bind_vertices();
             break;
         default:

@@ -1,4 +1,5 @@
 #include "element.h"
+#include "constants.h"
 
 Element::Element()
 {
@@ -12,4 +13,11 @@ Element::Element()
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 }
 
-void Element::draw(glm::mat4 view){};
+void Element::draw(glm::mat4 view){}
+
+glm::vec3 Element::configure_depth(glm::vec3 vec, int depth)
+{
+    auto new_vec = vec;
+    new_vec[2] += (Constant::depth_offset * depth);
+    return new_vec;
+}
