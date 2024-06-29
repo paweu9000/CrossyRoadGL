@@ -2,6 +2,7 @@
 #include <iostream>
 #include "enemy.h"
 #include "constants.h"
+#include <algorithm>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -89,12 +90,16 @@ void Game::process_input(GLFWwindow* window)
     {
         player->set_direction(Direction::WEST);
     }
+    // if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS && !player->is_moving())
+    // {
+    //     player->set_direction(Direction::SOUTH);
+    // }
 }
 
 void Game::update()
 {
     this->generate_level();
-    this->level->update();
+    this->level->update(player->get_depth());
     for (const auto& entity: entities)
     {
         entity->update(deltaTime);
@@ -110,6 +115,7 @@ void Game::update()
         player->show_collision(false);
     }
     camera->update(player, deltaTime);
+    this->remove_oob_elements();
 }
 
 void Game::draw()
@@ -161,5 +167,28 @@ void Game::generate_level()
         entities.push_back(new Enemy(Direction::EAST, depth));
         entities.push_back(new Enemy(Direction::WEST, depth));
         ++depth;
+    }
+}
+
+void Game::remove_oob_elements()
+{
+    auto player_depth = player->get_depth();
+    std::vector<Entity*> oob_entities;
+    for (int i = 1; i < entities.size(); ++i)
+    {
+        if (entities[i]->get_depth() > player_depth + 60.f)
+        {
+            oob_entities.emplace_back(entities[i]);
+        }
+    }
+
+    for (auto entity : oob_entities)
+    {
+        auto iter = std::find(entities.begin(), entities.end(), entity);
+        if (iter != entities.end())
+        {
+            std::iter_swap(iter, entities.end()-1);
+            entities.pop_back();
+        }
     }
 }

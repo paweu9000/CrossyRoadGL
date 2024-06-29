@@ -25,6 +25,7 @@ private:
     void reset_direction();
     bool check_collision();
     void generate_level();
+    void remove_oob_elements();
     GLFWwindow* window;
     Level* level;
     int width;
