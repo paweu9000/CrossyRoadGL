@@ -1,6 +1,7 @@
 #include "game.h"
 #include <iostream>
 #include "enemy.h"
+#include "constants.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -47,13 +48,15 @@ bool Game::initialize()
 
     shaderProgram = new Shader("src/shaders/vertex.vs", "src/shaders/fragment.fs");
 
+    this->depth = 1;
+
     level = new Level();
     player = new Player();
     entities.push_back(player);
-    for (int i = 1; i <= 10; ++i)
+    for (depth; depth <= 10; ++depth)
     {
-        entities.push_back(new Enemy(Direction::EAST, i));
-        entities.push_back(new Enemy(Direction::WEST, i));
+        entities.push_back(new Enemy(Direction::EAST, depth));
+        entities.push_back(new Enemy(Direction::WEST, depth));
     }
     
     camera = new Camera(player);
@@ -90,6 +93,7 @@ void Game::process_input(GLFWwindow* window)
 
 void Game::update()
 {
+    this->generate_level();
     this->level->update();
     for (const auto& entity: entities)
     {
@@ -147,4 +151,15 @@ bool Game::check_collision()
         }
     }
     return false;
+}
+
+void Game::generate_level()
+{
+    if (player->get_depth() + (Constant::depth_offset * 3.f) < depth * Constant::depth_offset)
+    {
+        this->level->add_element(depth);
+        entities.push_back(new Enemy(Direction::EAST, depth));
+        entities.push_back(new Enemy(Direction::WEST, depth));
+        ++depth;
+    }
 }

@@ -21,3 +21,8 @@ glm::vec3 Element::configure_depth(glm::vec3 vec, int depth)
     new_vec[2] += (Constant::depth_offset * depth);
     return new_vec;
 }
+
+float Element::get_depth()
+{
+    return this->model[3][2];
+}
