@@ -6,7 +6,7 @@ enum class ObjectType
     ROAD, LINE, GRASS
 };
 
-class LevelElement : protected Element
+class LevelElement : public Element
 {
 public:
     LevelElement(ObjectType type, int depth);
