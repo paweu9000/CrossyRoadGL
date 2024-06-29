@@ -11,6 +11,7 @@ class Element
 public:
     Element();
     virtual void draw(glm::mat4 view);
+    float get_depth();
 protected:
     virtual glm::vec3 configure_depth(glm::vec3 vec, int depth);
     std::vector<float> vertices;

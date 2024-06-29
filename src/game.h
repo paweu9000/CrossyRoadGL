@@ -24,6 +24,7 @@ private:
     void calculate_delta();
     void reset_direction();
     bool check_collision();
+    void generate_level();
     GLFWwindow* window;
     Level* level;
     int width;
@@ -33,4 +34,5 @@ private:
     Camera* camera;
     std::vector<Entity*> entities;
     float lastFrame, deltaTime;
+    int depth;
 };

@@ -4,9 +4,7 @@ Level::Level()
 {
     for (int i = 1; i <= 10; ++i)
     {
-        this->elements.push_back(new LevelElement(ObjectType::GRASS, i));
-        this->elements.push_back(new LevelElement(ObjectType::ROAD, i));
-        this->elements.push_back(new LevelElement(ObjectType::LINE, i));
+        add_element(i);
     }
 }
 
@@ -24,4 +22,11 @@ void Level::draw(glm::mat4 view)
     {
         element->draw(view);
     }
+}
+
+void Level::add_element(int depth)
+{
+    this->elements.push_back(new LevelElement(ObjectType::GRASS, depth));
+    this->elements.push_back(new LevelElement(ObjectType::ROAD, depth));
+    this->elements.push_back(new LevelElement(ObjectType::LINE, depth));
 }
