@@ -10,10 +10,10 @@ class LevelElement : public Element
 {
 public:
     LevelElement(ObjectType type, int depth);
-    void draw(glm::mat4 view) override;
-    void update();
+    void Draw(glm::mat4 view) override;
+    void Update();
 private:
-    void bind_vertices();
+    void BindVertices();
     ObjectType type;
     bool inBounds;
 };

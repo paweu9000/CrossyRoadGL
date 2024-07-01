@@ -3,7 +3,7 @@
 
 namespace Constant
 {
-    const std::vector<float> player = {
+    const std::vector<float> Player = {
         // Front face
         -0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-left corner
         0.5f, -0.5f,  0.5f, 0.5f, 0.0f, 0.0f,  // Bottom-right corner
@@ -107,7 +107,7 @@ namespace Constant
         0.0f, -0.5f,  0.0f, 1.0f, 0.0f, 0.0f   // Middle
     };
 
-    const std::vector<float> enemy = {
+    const std::vector<float> Enemy = {
         // Front face
         -1.0f, -0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-left corner (Darker Blue)
         1.0f, -0.5f,  0.5f, 0.0f, 0.0f, 0.5f,  // Bottom-right corner (Darker Blue)
@@ -211,7 +211,7 @@ namespace Constant
         0.0f, -0.5f,  0.0f, 0.5f, 0.5f, 1.0f   // Middle (Light Blue)
     };
 
-    const std::vector<float> grass = {
+    const std::vector<float> Grass = {
        -20.f, -5.f,  3.f, 0.0f, 0.3922f, 0.0f,  // Bottom left (dark green)
         20.f, -5.f,  3.f, 0.0f, 0.3922f, 0.0f,   // Bottom right (dark green)
         20.f,  5.f,  3.f, 0.0078f, 0.6392f, 0.1922f,   // Top right (light green)
@@ -260,7 +260,7 @@ namespace Constant
         -20.f, -5.f,  3.f, 0.0f, 0.1922f, 0.0f,  // Front left (dark green)
     };
 
-    const std::vector<float> road = {
+    const std::vector<float> Road = {
         -20.f, -5.f,  3.f, 0.3f, 0.3f, 0.3f,  // Bottom left (dark gray)
         20.f, -5.f,  3.f, 0.3f, 0.3f, 0.3f,   // Bottom right (dark gray)
         20.f,  5.f,  3.f, 0.5f, 0.5f, 0.5f,   // Top right (light gray)
@@ -309,7 +309,7 @@ namespace Constant
         -20.f, -5.f,  3.f, 0.3f, 0.3f, 0.3f,  // Front left (dark gray)
     };
 
-    const std::vector<float> lines = {
+    const std::vector<float> Lines = {
         // Line 1
         // Front face
         -20.f,  3.5f,  3.f, 1.0f, 1.0f, 1.0f,
@@ -458,16 +458,16 @@ namespace Constant
         4.f,  2.5f,  3.f, 0.9f, 0.9f, 0.9f,
     };
 
-    const float player_speed = 7;
-    const float enemy_speed = 10;
+    const float PlayerSpeed = 7;
+    const float EnemySpeed = 10;
 
-    const glm::vec3 grass_base_vec = glm::vec3(0.f, -3.65f, -12.f);
-    const glm::vec3 road_base_vec = glm::vec3(0.f, -3.65f, -22.f);
-    const glm::vec3 line_base_vec =  glm::vec3(4.5f, -3.60f, -18.5f);
+    const glm::vec3 GrassBaseVec = glm::vec3(0.f, -3.65f, -12.f);
+    const glm::vec3 RoadBaseVec = glm::vec3(0.f, -3.65f, -22.f);
+    const glm::vec3 LineBaseVec =  glm::vec3(4.5f, -3.60f, -18.5f);
 
-    const glm::vec3 enemy_e_vec = glm::vec3(-18.f, 0.f, -44.f);
-    const glm::vec3 enemy_w_vec = glm::vec3(18.f, 0.f, -39.f);
+    const glm::vec3 EnemyEVec = glm::vec3(-18.f, 0.f, -44.f);
+    const glm::vec3 EnemyWVec = glm::vec3(18.f, 0.f, -39.f);
 
-    const float depth_offset = -20.f;
+    const float DepthOffset = -20.f;
 
 }

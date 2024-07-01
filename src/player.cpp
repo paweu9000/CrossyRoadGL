@@ -1,10 +1,10 @@
-#include "player.h"
-#include "constants.h"
+#include "Player.h"
+#include "Constants.h"
 #include <iostream>
 
 Player::Player()
 {
-    vertices = Constant::player;
+    vertices = Constant::Player;
     this->isMoving = false;
     this->movementAngle = 0.f;
     this->direction = Direction::NONE;
@@ -20,16 +20,16 @@ Player::Player()
     shader = new Shader("src/shaders/vertex.vs", "src/shaders/fragment.fs");
 }
 
-void Player::update(float deltaTime)
+void Player::Update(float deltaTime)
 {
     if (this->direction == Direction::NONE) return;
     if (this->direction != Direction::NONE && !isMoving)
     {
         // check if following movements will go out of bounds
-        if (move_out_of_bounds()) return;
+        if (MoveOutOfBounds()) return;
     }
     this->isMoving = true;
-    float movement = deltaTime * Constant::player_speed;
+    float movement = deltaTime * Constant::PlayerSpeed;
     if (this->movementAngle + movement > glm::radians(90.f))
     {
         movement = glm::radians(90.f) - movementAngle;
@@ -83,36 +83,36 @@ void Player::update(float deltaTime)
     }
 }
 
-void Player::draw(glm::mat4 view)
+void Player::Draw(glm::mat4 view)
 {
-    shader->use();
-    shader->set_mat4("model", this->model);
-    shader->set_mat4("view", view);
-    shader->set_mat4("projection", this->projection);
+    shader->Use();
+    shader->SetMat4("model", this->model);
+    shader->SetMat4("view", view);
+    shader->SetMat4("projection", this->projection);
     
     glBindVertexArray(this->VAO);
     glDrawArrays(GL_TRIANGLES, 0, 72);
 }
 
-bool Player::is_moving() 
+bool Player::IsMoving() 
 {
     return this->isMoving;
 }
 
-void Player::show_collision(bool collides)
+void Player::ShowCollision(bool collides)
 {
-    this->shader->use();
+    this->shader->Use();
     if (collides)
     {
-        this->shader->set_vec3("collision_color", glm::vec3(1.0f, 0.5f, 0.0f));
+        this->shader->SetVec3("collision_color", glm::vec3(1.0f, 0.5f, 0.0f));
     }
     else
     {
-        this->shader->set_vec3("collision_color", glm::vec3(0.f, 0.f, 0.f));
+        this->shader->SetVec3("collision_color", glm::vec3(0.f, 0.f, 0.f));
     }
 }
 
-bool Player::move_out_of_bounds()
+bool Player::MoveOutOfBounds()
 {
     bool outOfBounds = false;
     switch (this->direction)

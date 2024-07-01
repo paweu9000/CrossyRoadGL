@@ -1,4 +1,4 @@
-#include "shader.h"
+#include "Shader.h"
 
 Shader::Shader(const char* vertexPath, const char* fragmentPath)
 {
@@ -42,12 +42,12 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     glCompileShader(vertex);
     glCompileShader(fragment);
 
-    if (!is_shader_successful(fragment))
+    if (!IsShaderSuccessful(fragment))
     {
         std::cout << "ERROR::FRAGMENT::COMPILATION::FAILURE";
     }
 
-    if (!is_shader_successful(vertex))
+    if (!IsShaderSuccessful(vertex))
     {
         std::cout << "ERROR::VERTEX::COMPILATION::FAILURE";
     }
@@ -57,7 +57,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     glAttachShader(this->ID, fragment);
     glLinkProgram(this->ID);
 
-    if (!is_program_succesful())
+    if (!IsProgramSuccesful())
     {
         std::cout << "ERROR::PROGRAM::LINKING::FAILURE";
     }
@@ -66,37 +66,37 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
     glDeleteShader(fragment);
 }
 
-void Shader::use()
+void Shader::Use()
 {
     glUseProgram(this->ID);
 }
 
-void Shader::set_bool(const std::string& name, bool value)
+void Shader::SetBool(const std::string& name, bool value)
 {
     glUniform1i(glGetUniformLocation(this->ID, name.c_str()), (int) value);
 }
 
-void Shader::set_int(const std::string& name, int value)
+void Shader::SetInt(const std::string& name, int value)
 {
     glUniform1i(glGetUniformLocation(this->ID, name.c_str()), value);
 }
 
-void Shader::set_float(const std::string& name, float value)
+void Shader::SetFloat(const std::string& name, float value)
 {
     glUniform1f(glGetUniformLocation(this->ID, name.c_str()), value);
 }
 
-void Shader::set_mat4(const std::string& name, const glm::mat4& value)
+void Shader::SetMat4(const std::string& name, const glm::mat4& value)
 {
     glUniformMatrix4fv(glGetUniformLocation(this->ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(value));
 }
 
-void Shader::set_vec3(const std::string& name, const glm::vec3& value)
+void Shader::SetVec3(const std::string& name, const glm::vec3& value)
 {
     glUniform3fv(glGetUniformLocation(this->ID, name.c_str()), 1, glm::value_ptr(value));
 }
 
-bool Shader::is_shader_successful(unsigned int shader)
+bool Shader::IsShaderSuccessful(unsigned int shader)
 {
     int success;
     char infoLog[512];
@@ -112,7 +112,7 @@ bool Shader::is_shader_successful(unsigned int shader)
     return true;
 }
 
-bool Shader::is_program_succesful()
+bool Shader::IsProgramSuccesful()
 {
     int success;
     char infoLog[512];

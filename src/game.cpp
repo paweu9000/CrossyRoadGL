@@ -1,10 +1,10 @@
-#include "game.h"
+#include "Game.h"
 #include <iostream>
-#include "enemy.h"
-#include "constants.h"
+#include "Enemy.h"
+#include "Constants.h"
 #include <algorithm>
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+void FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);
 }
@@ -20,7 +20,7 @@ Game::~Game()
     glfwTerminate();
 }
 
-bool Game::initialize()
+bool Game::Initialize()
 {
     if (!glfwInit()) return false;
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -38,7 +38,7 @@ bool Game::initialize()
     }
     glfwMakeContextCurrent(this->window);
 
-    glfwSetFramebufferSizeCallback(this->window, framebuffer_size_callback);
+    glfwSetFramebufferSizeCallback(this->window, FramebufferSizeCallback);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
@@ -65,90 +65,90 @@ bool Game::initialize()
     return true;
 }
 
-void Game::run_loop()
+void Game::RunLoop()
 {
     while (!glfwWindowShouldClose(this->window))
     {
-        calculate_delta();
-        process_input(this->window);
-        update();
-        draw();
+        CalculateDelta();
+        ProcessInput(this->window);
+        Update();
+        Draw();
     }
 }
 
-void Game::process_input(GLFWwindow* window)
+void Game::ProcessInput(GLFWwindow* window)
 {
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS && !player->is_moving())
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS && !player->IsMoving())
     {
-        player->set_direction(Direction::NORTH);
+        player->SetDirection(Direction::NORTH);
     }
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS && !player->is_moving())
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS && !player->IsMoving())
     {
-        player->set_direction(Direction::EAST);
+        player->SetDirection(Direction::EAST);
     }
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS && !player->is_moving())
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS && !player->IsMoving())
     {
-        player->set_direction(Direction::WEST);
+        player->SetDirection(Direction::WEST);
     }
-    // if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS && !player->is_moving())
+    // if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS && !player->IsMoving())
     // {
-    //     player->set_direction(Direction::SOUTH);
+    //     player->SetDirection(Direction::SOUTH);
     // }
 }
 
-void Game::update()
+void Game::Update()
 {
-    this->generate_level();
-    this->level->update(player->get_depth());
+    this->GenerateLevel();
+    level->Update(player->GetDepth());
     for (const auto& entity: entities)
     {
-        entity->update(deltaTime);
+        entity->Update(deltaTime);
     }
-    if (this->check_collision())
+    if (this->CheckCollision())
     {
     // TODO:
-        player->show_collision(true);
+        player->ShowCollision(true);
     // Implement end of the game
     }
     else
     {
-        player->show_collision(false);
+        player->ShowCollision(false);
     }
-    camera->update(player, deltaTime);
-    this->remove_oob_elements();
+    camera->Update(player, deltaTime);
+    this->RemoveOOBElements();
 }
 
-void Game::draw()
+void Game::Draw()
 {
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    this->level->draw(camera->get_view());
+    level->Draw(camera->GetView());
     for (const auto& entity: entities)
     {
-        entity->draw(camera->get_view());
+        entity->Draw(camera->GetView());
     }
 
     glfwSwapBuffers(window);
     glfwPollEvents();
 }
 
-void Game::calculate_delta()
+void Game::CalculateDelta()
 {
     float currentFrame = glfwGetTime();
     deltaTime = currentFrame - lastFrame;
     lastFrame = currentFrame;
 }
 
-bool Game::check_collision()
+bool Game::CheckCollision()
 {
-    AABB a = player->get_AABB(camera->get_view());
+    AABB a = player->GetAABB(camera->GetView());
 
     int meetingAxies = 0;
 
     for (int i = 1; i < entities.size(); i++)
     {
-        AABB b = entities[i]->get_AABB(camera->get_view());
+        AABB b = entities[i]->GetAABB(camera->GetView());
         if ((a.min.x <= b.max.x && a.max.x >= b.min.x) &&
            (a.min.y <= b.max.y && a.max.y >= b.min.y) &&
            (a.min.z <= b.max.z && a.max.z >= b.min.z))
@@ -159,24 +159,24 @@ bool Game::check_collision()
     return false;
 }
 
-void Game::generate_level()
+void Game::GenerateLevel()
 {
-    if (player->get_depth() + (Constant::depth_offset * 3.f) < depth * Constant::depth_offset)
+    if (player->GetDepth() + (Constant::DepthOffset * 3.f) < depth * Constant::DepthOffset)
     {
-        this->level->add_element(depth);
+        this->level->AddElement(depth);
         entities.push_back(new Enemy(Direction::EAST, depth));
         entities.push_back(new Enemy(Direction::WEST, depth));
         ++depth;
     }
 }
 
-void Game::remove_oob_elements()
+void Game::RemoveOOBElements()
 {
-    auto player_depth = player->get_depth();
+    auto player_depth = player->GetDepth();
     std::vector<Entity*> oob_entities;
     for (int i = 1; i < entities.size(); ++i)
     {
-        if (entities[i]->get_depth() > player_depth + 60.f)
+        if (entities[i]->GetDepth() > player_depth + 60.f)
         {
             oob_entities.emplace_back(entities[i]);
         }

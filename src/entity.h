@@ -17,11 +17,11 @@ class Entity : public Element
 {
 public:
     Entity();
-    virtual void update(float deltaTime);
-    void set_direction(Direction direction);
-    Direction get_direction() const;
-    AABB get_AABB(glm::mat4 view);
-    glm::mat4 get_model() const;
+    virtual void Update(float deltaTime);
+    void SetDirection(Direction direction);
+    Direction getDirection() const;
+    AABB GetAABB(glm::mat4 view);
+    glm::mat4 GetModel() const;
 protected:
     Direction direction;
 };

@@ -1,11 +1,11 @@
-#include "camera.h"
+#include "Camera.h"
 #include <glm/gtc/matrix_transform.hpp>
-#include "constants.h"
+#include "Constants.h"
 
 Camera::Camera(Player* player)
 {
     this->cameraPos = glm::vec3(0.0f, 20.0f, -5.0f);
-    this->cameraTarget = glm::vec3(player->get_model()[3]);
+    this->cameraTarget = glm::vec3(player->GetModel()[3]);
     this->cameraUp = glm::vec3(0.0f, 20.0f, 0.0f);
     this->view = glm::lookAt(
         cameraPos, 
@@ -14,11 +14,11 @@ Camera::Camera(Player* player)
     );
 }
 
-void Camera::update(Player* player, float deltaTime)
+void Camera::Update(Player* player, float deltaTime)
 {
-    float movement = deltaTime * Constant::player_speed;
+    float movement = deltaTime * Constant::PlayerSpeed;
 
-    switch (player->get_direction())
+    switch (player->getDirection())
     {
     case Direction::NORTH:
         this->cameraPos += glm::vec3(0.f, 0.f, -movement);
@@ -29,7 +29,7 @@ void Camera::update(Player* player, float deltaTime)
     default:
         break;
     }
-    this->cameraTarget = glm::vec3(player->get_model()[3]);
+    this->cameraTarget = glm::vec3(player->GetModel()[3]);
     this->view = glm::lookAt(
         cameraPos, 
   		cameraTarget, 
@@ -37,7 +37,7 @@ void Camera::update(Player* player, float deltaTime)
     );
 }
 
-glm::mat4 Camera::get_view()
+glm::mat4 Camera::GetView()
 {
     return this->view;
 }

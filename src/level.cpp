@@ -1,55 +1,55 @@
-#include "level.h"
+#include "Level.h"
 #include <algorithm>
 
 Level::Level()
 {
     for (int i = 1; i <= 10; ++i)
     {
-        add_element(i);
+        AddElement(i);
     }
 }
 
-void Level::update(float player_depth)
+void Level::Update(float playerDepth)
 {
-    this->remove_oob_elements(player_depth);
-    for (const auto& element: elements)
+    this->RemoveOOBElements(playerDepth);
+    for (const auto &element : elements)
     {
-        element->update();
+        element->Update();
     }
 }
 
-void Level::draw(glm::mat4 view)
+void Level::Draw(glm::mat4 view)
 {
-    for (const auto& element: elements)
+    for (const auto &element : elements)
     {
-        element->draw(view);
+        element->Draw(view);
     }
 }
 
-void Level::add_element(int depth)
+void Level::AddElement(int depth)
 {
     this->elements.push_back(new LevelElement(ObjectType::GRASS, depth));
     this->elements.push_back(new LevelElement(ObjectType::ROAD, depth));
     this->elements.push_back(new LevelElement(ObjectType::LINE, depth));
 }
 
-void Level::remove_oob_elements(float player_depth)
+void Level::RemoveOOBElements(float playerDepth)
 {
-    std::vector<LevelElement*> oob_elements;
+    std::vector<LevelElement *> oobElements;
     for (auto element : elements)
     {
-        if (element->get_depth() > player_depth + 60.f)
+        if (element->GetDepth() > playerDepth + 60.f)
         {
-            oob_elements.emplace_back(element);
+            oobElements.emplace_back(element);
         }
     }
 
-    for (auto element : oob_elements)
+    for (auto element : oobElements)
     {
         auto iter = std::find(elements.begin(), elements.end(), element);
         if (iter != elements.end())
         {
-            std::iter_swap(iter, elements.end()-1);
+            std::iter_swap(iter, elements.end() - 1);
             elements.pop_back();
         }
     }

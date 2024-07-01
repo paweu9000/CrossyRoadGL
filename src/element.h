@@ -1,5 +1,5 @@
 #pragma once
-#include "shader.h"
+#include "Shader.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glad/glad.h>
@@ -10,10 +10,10 @@ class Element
 {
 public:
     Element();
-    virtual void draw(glm::mat4 view);
-    float get_depth();
+    virtual void Draw(glm::mat4 view);
+    float GetDepth();
 protected:
-    virtual glm::vec3 configure_depth(glm::vec3 vec, int depth);
+    virtual glm::vec3 ConfigureDepth(glm::vec3 vec, int depth);
     std::vector<float> vertices;
     Shader* shader;
     unsigned int VBO, VAO;
