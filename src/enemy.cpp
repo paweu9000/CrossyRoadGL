@@ -1,16 +1,16 @@
-#include "enemy.h"
-#include "constants.h"
+#include "Enemy.h"
+#include "Constants.h"
 #include <iostream>
 #include <cstdlib>
 
 Enemy::Enemy(Direction direction, int depth)
 {
-    vertices = Constant::enemy;
+    vertices = Constant::Enemy;
     this->direction = direction;
     this->depth = depth;
-    this->reset_position();
+    this->ResetPosition();
 
-    this->speed_multiplier = 0.5f + static_cast<float>(rand() / (static_cast<float> (RAND_MAX / (2.0f - 0.5f))));
+    this->speedMultiplier = 0.5f + static_cast<float>(rand() / (static_cast<float> (RAND_MAX / (2.0f - 0.5f))));
 
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), &vertices.front(), GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
@@ -21,49 +21,49 @@ Enemy::Enemy(Direction direction, int depth)
     shader = new Shader("src/shaders/vertex.vs", "src/shaders/fragment.fs");
 }
 
-void Enemy::update(float deltaTime)
+void Enemy::Update(float deltaTime)
 {
-    if (this->model[3][0] > 18.f || this->model[3][0] < -18.f) reset_position();
-    float movement_speed = deltaTime * Constant::enemy_speed * this->speed_multiplier;
+    if (this->model[3][0] > 18.f || this->model[3][0] < -18.f) ResetPosition();
+    float movementSpeed = deltaTime * Constant::EnemySpeed * this->speedMultiplier;
     switch (this->direction)
     {
     case Direction::EAST:
-        this->model = glm::translate(glm::mat4(1.f), glm::vec3(movement_speed, 0.f, 0.f)) * model;
+        this->model = glm::translate(glm::mat4(1.f), glm::vec3(movementSpeed, 0.f, 0.f)) * model;
         break;
     case Direction::WEST:
-        this->model = glm::translate(glm::mat4(1.f), glm::vec3(-movement_speed, 0.f, 0.f)) * model;
+        this->model = glm::translate(glm::mat4(1.f), glm::vec3(-movementSpeed, 0.f, 0.f)) * model;
     default:
         break;
     }
 }
 
-void Enemy::draw(glm::mat4 view)
+void Enemy::Draw(glm::mat4 view)
 {
-    shader->use();
-    shader->set_mat4("model", this->model);
-    shader->set_mat4("view", view);
-    shader->set_mat4("projection", this->projection);
+    shader->Use();
+    shader->SetMat4("model", this->model);
+    shader->SetMat4("view", view);
+    shader->SetMat4("projection", this->projection);
     
     glBindVertexArray(this->VAO);
     glDrawArrays(GL_TRIANGLES, 0, 72);
 }
 
-void Enemy::reset_position()
+void Enemy::ResetPosition()
 {
     this->model = glm::mat4(1.f);
     if (direction == Direction::EAST) 
     {
-        this->model = glm::translate(this->model, configure_depth(Constant::enemy_e_vec, depth));
+        this->model = glm::translate(this->model, ConfigureDepth(Constant::EnemyEVec, depth));
     }
     else
     {
-        this->model = glm::translate(this->model, configure_depth(Constant::enemy_w_vec, depth));
+        this->model = glm::translate(this->model, ConfigureDepth(Constant::EnemyWVec, depth));
     }
 }
 
-glm::vec3 Enemy::configure_depth(glm::vec3 vec, int depth)
+glm::vec3 Enemy::ConfigureDepth(glm::vec3 vec, int depth)
 {
     auto new_vec = vec;
-    new_vec[2] += Constant::depth_offset * (depth - 1);
+    new_vec[2] += Constant::DepthOffset * (depth - 1);
     return new_vec;
 }

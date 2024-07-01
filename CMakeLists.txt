@@ -5,17 +5,17 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_executable(${PROJECT_NAME} 
-    src/main.cpp
+    src/Main.cpp
     src/glad.c
-    src/game.cpp
-    src/shader.cpp
-    src/level.cpp
-    src/entity.cpp
-    src/element.cpp
-    src/levelelement.cpp
-    src/player.cpp
-    src/enemy.cpp
-    src/camera.cpp
+    src/Game.cpp
+    src/Shader.cpp
+    src/Level.cpp
+    src/Entity.cpp
+    src/Element.cpp
+    src/Levelelement.cpp
+    src/Player.cpp
+    src/Enemy.cpp
+    src/Camera.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

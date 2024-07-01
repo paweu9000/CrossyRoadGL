@@ -1,12 +1,12 @@
 #include <iostream>
-#include "game.h"
+#include "Game.h"
 
 int main()
 {
     auto game = new Game();
-    if (game->initialize())
+    if (game->Initialize())
     {
-        game->run_loop();
+        game->RunLoop();
     }
     else
     {

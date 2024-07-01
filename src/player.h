@@ -1,16 +1,16 @@
 #pragma once
-#include "entity.h"
+#include "Entity.h"
 
 class Player : public Entity
 {
 public:
     Player();
-    void update(float deltaTime) override;
-    void draw(glm::mat4 view) override;
-    void show_collision(bool collides);
-    bool is_moving();
+    void Update(float deltaTime) override;
+    void Draw(glm::mat4 view) override;
+    void ShowCollision(bool collides);
+    bool IsMoving();
 private:
-    bool move_out_of_bounds();
+    bool MoveOutOfBounds();
     bool isMoving;
     float movementAngle;
 };

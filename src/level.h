@@ -1,14 +1,14 @@
 #pragma once
-#include "levelelement.h"
+#include "LevelElement.h"
 
 class Level
 {
 public:
     Level();
-    void update(float player_depth);
-    void draw(glm::mat4 view);
-    void add_element(int depth);
+    void Update(float playerDepth);
+    void Draw(glm::mat4 view);
+    void AddElement(int depth);
 private:
-    void remove_oob_elements(float player_depth);
+    void RemoveOOBElements(float playerDepth);
     std::vector<LevelElement*> elements;
 };

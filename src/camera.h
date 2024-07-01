@@ -1,6 +1,6 @@
 #pragma once
 #include <glm/glm.hpp>
-#include "player.h"
+#include "Player.h"
 
 enum class CMove
 {
@@ -11,8 +11,8 @@ class Camera
 {
 public:
     Camera(Player* player);
-    glm::mat4 get_view();
-    void update(Player* player, float deltaTime);
+    glm::mat4 GetView();
+    void Update(Player* player, float deltaTime);
 private:
     glm::vec3 cameraPos;
     glm::vec3 cameraTarget;

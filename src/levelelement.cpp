@@ -1,5 +1,5 @@
-#include "levelelement.h"
-#include "constants.h"
+#include "LevelElement.h"
+#include "Constants.h"
 #include <iostream>
 
 LevelElement::LevelElement(ObjectType type, int depth)
@@ -9,19 +9,19 @@ LevelElement::LevelElement(ObjectType type, int depth)
 
     switch (type) {
         case ObjectType::GRASS:
-            vertices = Constant::grass;
-            this->model = glm::translate(this->model, configure_depth(Constant::grass_base_vec, depth)) * model;
-            bind_vertices();
+            vertices = Constant::Grass;
+            this->model = glm::translate(this->model, ConfigureDepth(Constant::GrassBaseVec, depth)) * model;
+            BindVertices();
             break;
         case ObjectType::LINE:
-            vertices = Constant::lines;
-            this->model = glm::translate(glm::mat4(1.0f),  configure_depth(Constant::line_base_vec, depth)) * model;
-            bind_vertices();
+            vertices = Constant::Lines;
+            this->model = glm::translate(glm::mat4(1.0f),  ConfigureDepth(Constant::LineBaseVec, depth)) * model;
+            BindVertices();
             break;
         case ObjectType::ROAD:
-            vertices = Constant::road;
-            this->model = glm::translate(glm::mat4(1.0f),  configure_depth(Constant::road_base_vec, depth)) * model;
-            bind_vertices();
+            vertices = Constant::Road;
+            this->model = glm::translate(glm::mat4(1.0f),  ConfigureDepth(Constant::RoadBaseVec, depth)) * model;
+            BindVertices();
             break;
         default:
             break;
@@ -29,25 +29,25 @@ LevelElement::LevelElement(ObjectType type, int depth)
     this->model = glm::rotate(this->model, glm::radians(-90.f), glm::vec3(1.f, 0.f, 0.f));
 }
 
-void LevelElement::update()
+void LevelElement::Update()
 {
     
 }
 
-void LevelElement::draw(glm::mat4 view)
+void LevelElement::Draw(glm::mat4 view)
 {
-    shader->use();
-    shader->use();
-    shader->set_mat4("model", this->model);
-    shader->set_mat4("view", view);
-    shader->set_mat4("projection", this->projection);
+    shader->Use();
+    shader->Use();
+    shader->SetMat4("model", this->model);
+    shader->SetMat4("view", view);
+    shader->SetMat4("projection", this->projection);
     auto color = cos(glfwGetTime());
-    shader->set_float("colorChange", color < 0.8f ? 0.8f : color);
+    shader->SetFloat("colorChange", color < 0.8f ? 0.8f : color);
     glBindVertexArray(this->VAO);
     glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 6);
 }
 
-void LevelElement::bind_vertices()
+void LevelElement::BindVertices()
 {
     this->shader = new Shader("src/shaders/level_vertex.vs", "src/shaders/level_fragment.fs");
 

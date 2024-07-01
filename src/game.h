@@ -1,31 +1,31 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "shader.h"
+#include "Shader.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <vector>
-#include "level.h"
-#include "player.h"
-#include "camera.h"
+#include "Level.h"
+#include "Player.h"
+#include "Camera.h"
 
 class Game
 {
 public:
     Game();
     ~Game();
-    bool initialize();
-    void run_loop();
+    bool Initialize();
+    void RunLoop();
 
 private:
-    void process_input(GLFWwindow* window);
-    void update();
-    void draw();
-    void calculate_delta();
-    void reset_direction();
-    bool check_collision();
-    void generate_level();
-    void remove_oob_elements();
+    void ProcessInput(GLFWwindow* window);
+    void Update();
+    void Draw();
+    void CalculateDelta();
+    void ResetDirection();
+    bool CheckCollision();
+    void GenerateLevel();
+    void RemoveOOBElements();
     GLFWwindow* window;
     Level* level;
     int width;

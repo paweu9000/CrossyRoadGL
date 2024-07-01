@@ -1,19 +1,19 @@
-#include "entity.h"
+#include "Entity.h"
 
 Entity::Entity() : direction(Direction::NONE)
 {
 }
 
-void Entity::update(float deltaTime)
+void Entity::Update(float deltaTime)
 {
 }
 
-void Entity::set_direction(Direction direction)
+void Entity::SetDirection(Direction direction)
 {
     this->direction = direction;
 }
 
-AABB Entity::get_AABB(glm::mat4 view)
+AABB Entity::GetAABB(glm::mat4 view)
 {
     std::vector<glm::vec3> positions;
     for (int i = 0; i < vertices.size(); i += 6)
@@ -42,12 +42,12 @@ AABB Entity::get_AABB(glm::mat4 view)
     return {min, max};
 }
 
-glm::mat4 Entity::get_model() const
+glm::mat4 Entity::GetModel() const
 {
     return this->model;
 }
 
-Direction Entity::get_direction() const
+Direction Entity::getDirection() const
 {
     return this->direction;
 }

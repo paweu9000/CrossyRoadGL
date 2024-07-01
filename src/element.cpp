@@ -1,5 +1,5 @@
-#include "element.h"
-#include "constants.h"
+#include "Element.h"
+#include "Constants.h"
 
 Element::Element()
 {
@@ -13,16 +13,16 @@ Element::Element()
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 }
 
-void Element::draw(glm::mat4 view){}
+void Element::Draw(glm::mat4 view){}
 
-glm::vec3 Element::configure_depth(glm::vec3 vec, int depth)
+glm::vec3 Element::ConfigureDepth(glm::vec3 vec, int depth)
 {
     auto new_vec = vec;
-    new_vec[2] += (Constant::depth_offset * depth);
+    new_vec[2] += (Constant::DepthOffset * depth);
     return new_vec;
 }
 
-float Element::get_depth()
+float Element::GetDepth()
 {
     return this->model[3][2];
 }
