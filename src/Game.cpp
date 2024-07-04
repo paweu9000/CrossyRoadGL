@@ -104,16 +104,16 @@ void Game::Update()
     {
         entity->Update(deltaTime);
     }
-    if (this->CheckCollision())
-    {
-        // TODO:
-        player->ShowCollision(true);
-        // Implement end of the game
-    }
-    else
-    {
-        player->ShowCollision(false);
-    }
+    // if (this->CheckCollision())
+    // {
+    //     // TODO:
+    //     player->ShowCollision(true);
+    //     // Implement end of the game
+    // }
+    // else
+    // {
+    //     player->ShowCollision(false);
+    // }
     camera->Update(player, deltaTime);
     this->RemoveOOBElements();
 }

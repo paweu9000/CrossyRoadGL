@@ -26,3 +26,20 @@ float Element::GetDepth()
 {
     return this->model[3][2];
 }
+
+void Element::SetMaterial(Material material)
+{
+    shader->Use();
+    shader->SetInt("material.diffuse", material.diffuse);
+    shader->SetInt("material.specular", material.specular);
+    shader->SetFloat("material.shininess", material.shininess);
+}
+
+void Element::SetDirectionLight()
+{
+    shader->Use();
+    shader->SetVec3("dirLight.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
+    shader->SetVec3("dirLight.ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+    shader->SetVec3("dirLight.diffuse", glm::vec3(0.4f, 0.4f, 0.4f));
+    shader->SetVec3("dirLight.specular", glm::vec3(0.5f, 0.5f, 0.5f));
+}

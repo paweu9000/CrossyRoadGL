@@ -13,14 +13,18 @@ Player::Player()
     this->model = glm::translate(this->model, glm::vec3(0.f, 0.f, -29.f));
 
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), &vertices.front(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3*sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
-
-    this->textureID = TextureManager::GetTexture("player");
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    glEnableVertexAttribArray(2);
 
     shader = new Shader("src/shaders/vertex.vs", "src/shaders/fragment.fs");
+
+    shader->Use();
+    shader->SetInt("material.diffuse", 0);
+    shader->SetInt("material.specular", 1);
 }
 
 void Player::Update(float deltaTime)
@@ -88,13 +92,17 @@ void Player::Update(float deltaTime)
 
 void Player::Draw(glm::mat4 view)
 {
+    glm::vec3 viewPos = glm::vec3(view[3][0], view[3][1], view[3][2]);
     shader->Use();
+    SetLightning(viewPos);
     shader->SetMat4("model", this->model);
     shader->SetMat4("view", view);
     shader->SetMat4("projection", this->projection);
 
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, textureID);
+    glBindTexture(GL_TEXTURE_2D, TextureManager::GetTexture("player"));
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, TextureManager::GetTexture("player_specular"));
     
     glBindVertexArray(this->VAO);
     glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -137,4 +145,12 @@ bool Player::MoveOutOfBounds()
     }
     if (outOfBounds) this->direction = Direction::NONE;
     return outOfBounds;
+}
+
+void Player::SetLightning(glm::vec3 viewPos)
+{
+    shader->Use();
+    shader->SetVec3("viewPos", viewPos);
+    SetDirectionLight();
+    SetMaterial(Materials::Player);
 }

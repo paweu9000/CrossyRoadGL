@@ -22,6 +22,7 @@ public:
     Direction getDirection() const;
     AABB GetAABB(glm::mat4 view);
     glm::mat4 GetModel() const;
+    void SetLightning(glm::vec3 viewPos) override;
 protected:
     Direction direction;
 };

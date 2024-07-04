@@ -12,6 +12,7 @@ public:
     LevelElement(ObjectType type, int depth);
     void Draw(glm::mat4 view) override;
     void Update();
+    void SetLightning(glm::vec3 viewPos) override;
 private:
     void BindVertices();
     ObjectType type;
