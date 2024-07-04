@@ -5,6 +5,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <vector>
+#include "Material.h"
 
 class Element
 {
@@ -14,6 +15,9 @@ public:
     float GetDepth();
 protected:
     virtual glm::vec3 ConfigureDepth(glm::vec3 vec, int depth);
+    void SetMaterial(Material material);
+    void SetDirectionLight();
+    virtual void SetLightning(glm::vec3 viewPos) {}
     std::vector<float> vertices;
     Shader* shader;
     unsigned int VBO, VAO;

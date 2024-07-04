@@ -51,3 +51,6 @@ Direction Entity::getDirection() const
 {
     return this->direction;
 }
+
+void Entity::SetLightning(glm::vec3 viewPos)
+{}

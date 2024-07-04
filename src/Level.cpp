@@ -20,8 +20,10 @@ void Level::Update(float playerDepth)
 
 void Level::Draw(glm::mat4 view)
 {
+    auto viewPos = glm::vec3(view[3][0], view[3][1], view[3][2]);
     for (const auto &element : elements)
     {
+        element->SetLightning(viewPos);
         element->Draw(view);
     }
 }

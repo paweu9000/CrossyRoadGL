@@ -44,11 +44,22 @@ void TextureManager::LoadTextures()
         }
         return textureID;
     };
-    this->textures["player"] = genTexture(Constant::Textures[0]);
-    this->textures["enemy"] = genTexture(Constant::Textures[1]);
-    this->textures["grass"] = genTexture(Constant::Textures[2]);
-    this->textures["road"] = genTexture(Constant::Textures[3]);
-    this->textures["lines"] = genTexture(Constant::Textures[4]);
+    
+    this->textures["player"] = genTexture(Constant::PlayerTexture);
+    this->textures["player_normal"] = genTexture(Constant::PlayerNormalTexture);
+    this->textures["player_specular"] = genTexture(Constant::PlayerSpecularTexture);
+    this->textures["enemy"] = genTexture(Constant::EnemyTexture);
+    this->textures["enemy_normal"] = genTexture(Constant::EnemyNormalTexture);
+    this->textures["enemy_specular"] = genTexture(Constant::EnemySpecularTexture);
+    this->textures["grass"] = genTexture(Constant::GrassTexture);
+    this->textures["grass_normal"] = genTexture(Constant::GrassNormalTexture);
+    this->textures["grass_specular"] = genTexture(Constant::GrassSpecularTexture);
+    this->textures["road"] = genTexture(Constant::RoadTexture);
+    this->textures["road_normal"] = genTexture(Constant::RoadNormalTexture);
+    this->textures["road_specular"] = genTexture(Constant::RoadSpecularTexture);
+    this->textures["lines"] = genTexture(Constant::LinesTexture);
+    this->textures["lines_normal"] = genTexture(Constant::LinesNormalTexture);
+    this->textures["lines_specular"] = genTexture(Constant::LinesSpecularTexture);
 }
 
 unsigned int TextureManager::GetTexture(std::string texName)

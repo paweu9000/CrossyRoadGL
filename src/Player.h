@@ -9,6 +9,7 @@ public:
     void Draw(glm::mat4 view) override;
     void ShowCollision(bool collides);
     bool IsMoving();
+    void SetLightning(glm::vec3 viewPos) override;
 private:
     bool MoveOutOfBounds();
     bool isMoving;
