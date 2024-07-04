@@ -16,6 +16,8 @@ add_executable(${PROJECT_NAME}
     src/Player.cpp
     src/Enemy.cpp
     src/Camera.cpp
+    src/stb_image.cpp
+    src/TextureManager.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
@@ -23,6 +25,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include/GLFW
     ${CMAKE_CURRENT_SOURCE_DIR}/include/glad
     ${CMAKE_CURRENT_SOURCE_DIR}/include/glm
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/stb_image
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE

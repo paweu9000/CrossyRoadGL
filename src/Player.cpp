@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Constants.h"
 #include <iostream>
+#include "TextureManager.h"
 
 Player::Player()
 {
@@ -12,10 +13,12 @@ Player::Player()
     this->model = glm::translate(this->model, glm::vec3(0.f, 0.f, -29.f));
 
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), &vertices.front(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3*sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3*sizeof(float)));
     glEnableVertexAttribArray(1);
+
+    this->textureID = TextureManager::GetTexture("player");
 
     shader = new Shader("src/shaders/vertex.vs", "src/shaders/fragment.fs");
 }
@@ -89,9 +92,12 @@ void Player::Draw(glm::mat4 view)
     shader->SetMat4("model", this->model);
     shader->SetMat4("view", view);
     shader->SetMat4("projection", this->projection);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, textureID);
     
     glBindVertexArray(this->VAO);
-    glDrawArrays(GL_TRIANGLES, 0, 72);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
 }
 
 bool Player::IsMoving() 

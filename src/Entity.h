@@ -1,6 +1,6 @@
 #pragma once
-#include "shader.h"
-#include "element.h"
+#include "Shader.h"
+#include "Element.h"
 
 enum class Direction
 {
