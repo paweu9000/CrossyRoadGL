@@ -19,4 +19,5 @@ protected:
     unsigned int VBO, VAO;
     glm::mat4 projection;
     glm::mat4 model;
+    unsigned int textureID;
 };

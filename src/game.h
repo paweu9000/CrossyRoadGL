@@ -8,6 +8,8 @@
 #include "Level.h"
 #include "Player.h"
 #include "Camera.h"
+#include "TextureManager.h"
+#include <unordered_map>
 
 class Game
 {
@@ -30,9 +32,9 @@ private:
     Level* level;
     int width;
     int height;
-    Shader* shaderProgram;
     Player* player;
     Camera* camera;
+    TextureManager* textureManager;
     std::vector<Entity*> entities;
     float lastFrame, deltaTime;
     int depth;

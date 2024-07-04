@@ -3,6 +3,7 @@
 #include "Enemy.h"
 #include "Constants.h"
 #include <algorithm>
+#include "stb_image.h"
 
 void FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
@@ -47,10 +48,9 @@ bool Game::Initialize()
 
     glEnable(GL_DEPTH_TEST);
 
-    shaderProgram = new Shader("src/shaders/vertex.vs", "src/shaders/fragment.fs");
-
     this->depth = 1;
-
+    
+    textureManager = new TextureManager();
     level = new Level();
     player = new Player();
     entities.push_back(player);
@@ -106,9 +106,9 @@ void Game::Update()
     }
     if (this->CheckCollision())
     {
-    // TODO:
+        // TODO:
         player->ShowCollision(true);
-    // Implement end of the game
+        // Implement end of the game
     }
     else
     {
@@ -143,8 +143,6 @@ void Game::CalculateDelta()
 bool Game::CheckCollision()
 {
     AABB a = player->GetAABB(camera->GetView());
-
-    int meetingAxies = 0;
 
     for (int i = 1; i < entities.size(); i++)
     {
