@@ -23,8 +23,9 @@ Player::Player()
     shader = new Shader("src/shaders/vertex.vs", "src/shaders/fragment.fs");
 
     shader->Use();
-    shader->SetInt("material.diffuse", 0);
+    shader->SetInt("material.diffuse", 1);
     shader->SetInt("material.specular", 1);
+    shader->SetInt("spotLight[0].isInitialized", 0);
 }
 
 void Player::Update(float deltaTime)
