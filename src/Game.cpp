@@ -123,7 +123,7 @@ void Game::Draw()
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    level->Draw(camera->GetView());
+    level->Draw(camera->GetView(), entities);
     for (const auto& entity: entities)
     {
         entity->Draw(camera->GetView());

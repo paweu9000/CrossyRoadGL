@@ -2,6 +2,7 @@
 #include "Constants.h"
 #include <iostream>
 #include "TextureManager.h"
+#include "Lightning.h"
 
 LevelElement::LevelElement(ObjectType type, int depth)
 {
@@ -30,8 +31,9 @@ LevelElement::LevelElement(ObjectType type, int depth)
     this->model = glm::rotate(this->model, glm::radians(-90.f), glm::vec3(1.f, 0.f, 0.f));
 
     shader->Use();
-    shader->SetInt("material.diffuse", 0);
+    shader->SetInt("material.diffuse", 1);
     shader->SetInt("material.specular", 1);
+    shader->SetInt("spotLight[0].isInitialized", 1);
 }
 
 void LevelElement::Update()
@@ -103,5 +105,27 @@ void LevelElement::SetLightning(glm::vec3 viewPos)
             break;
         default:
             break;
+    }
+}
+
+void LevelElement::SetSpotLightning(const std::vector<Entity*> entities)
+{
+    shader->Use();
+    for (int i = 1; i < entities.size(); ++i)
+    {
+        std::string base = "spotLight[" + std::to_string(i - 1) + "]";
+        glm::vec3 position;
+        if (entities[i]->getDirection() == Direction::EAST) position = glm::vec3(entities[i]->GetModel()[3][0]+0.5f, entities[i]->GetModel()[3][1], entities[i]->GetModel()[3][2]);
+        else position = glm::vec3(entities[i]->GetModel()[3][0], entities[i]->GetModel()[3][1], entities[i]->GetModel()[3][2]);
+        shader->SetVec3(base + ".position", position);
+        shader->SetVec3(base + ".direction", entities[i]->getDirection() == Direction::WEST ? Lightning::West : Lightning::East);
+        shader->SetVec3(base + ".ambient", glm::vec3(1.f, 1.f, 1.f));
+        shader->SetVec3(base + ".diffuse", Lightning::SpotDiffuse);
+        shader->SetVec3(base + ".specular", Lightning::SpotSpecular);
+        shader->SetFloat(base + ".constant", Lightning::Constant);
+        shader->SetFloat(base + ".linear", Lightning::Linear);
+        shader->SetFloat(base + ".quadratic", Lightning::Quadratic);
+        shader->SetFloat(base + ".cutOff", Lightning::SpotCutOff);
+        shader->SetFloat(base + ".outerCutOff", Lightning::SpotOuterCutOff); 
     }
 }
