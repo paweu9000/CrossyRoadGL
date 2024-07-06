@@ -6,6 +6,9 @@ namespace Lightning
     const glm::vec3 SpotAmbient = glm::vec3(1.0f, 1.0f, 1.0f);
     const glm::vec3 SpotDiffuse = glm::vec3(1.0f, 1.0f, 1.0f);
     const glm::vec3 SpotSpecular = glm::vec3(1.0f, 1.0f, 1.0f);
+    const glm::vec3 PointAmbient = glm::vec3(0.25f, 0.25f, 0.25f);
+    const glm::vec3 PointDiffuse = glm::vec3(0.8f, 0.8f, 0.8f);
+    const glm::vec3 PointSpecular = glm::vec3(1.0f, 1.0f, 1.0f);
     const float Constant = 1.0f;
     const float Linear = 0.09f;
     const float Quadratic = 0.032f;

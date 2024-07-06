@@ -5,7 +5,7 @@
 
 enum class ObjectType
 {
-    ROAD, LINE, GRASS
+    ROAD, LINE, GRASS, LAMP
 };
 
 class LevelElement : public Element
@@ -16,6 +16,8 @@ public:
     void Update();
     void SetLightning(glm::vec3 viewPos) override;
     void SetSpotLightning(const std::vector<Entity*> entities);
+    void SetPointLight(const std::vector<LevelElement*> lamps);
+    ObjectType GetType() const;
 private:
     void BindVertices();
     ObjectType type;

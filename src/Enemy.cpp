@@ -26,6 +26,7 @@ Enemy::Enemy(Direction direction, int depth)
     shader->SetInt("material.diffuse", 1);
     shader->SetInt("material.specular", 1);
     shader->SetInt("spotLight[0].isInitialized", 0);
+    shader->SetInt("pointLights[0].isInitialized", 0);
 }
 
 void Enemy::Update(float deltaTime)

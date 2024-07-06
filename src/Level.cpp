@@ -21,8 +21,14 @@ void Level::Update(float playerDepth)
 void Level::Draw(glm::mat4 view, const std::vector<Entity*> entities)
 {
     auto viewPos = glm::vec3(view[3][0], view[3][1], view[3][2]);
+    std::vector<LevelElement*> lamps;
     for (const auto &element : elements)
     {
+        if (element->GetType() == ObjectType::LAMP) lamps.push_back(element);
+    }
+    for (const auto &element : elements)
+    {
+        element->SetPointLight(lamps);
         element->SetSpotLightning(entities);
         element->Draw(view);
     }
@@ -33,6 +39,7 @@ void Level::AddElement(int depth)
     this->elements.push_back(new LevelElement(ObjectType::GRASS, depth));
     this->elements.push_back(new LevelElement(ObjectType::ROAD, depth));
     this->elements.push_back(new LevelElement(ObjectType::LINE, depth));
+    this->elements.push_back(new LevelElement(ObjectType::LAMP, depth));
 }
 
 void Level::RemoveOOBElements(float playerDepth)
