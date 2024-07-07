@@ -69,6 +69,8 @@ void Game::RunLoop()
 {
     while (!glfwWindowShouldClose(this->window))
     {
+        GenerateLevel();
+        RemoveOOBElements();
         CalculateDelta();
         ProcessInput(this->window);
         Update();
@@ -98,7 +100,6 @@ void Game::ProcessInput(GLFWwindow* window)
 
 void Game::Update()
 {
-    this->GenerateLevel();
     level->Update(player->GetDepth());
     for (const auto& entity: entities)
     {
@@ -115,7 +116,6 @@ void Game::Update()
     //     player->ShowCollision(false);
     // }
     camera->Update(player, deltaTime);
-    this->RemoveOOBElements();
 }
 
 void Game::Draw()

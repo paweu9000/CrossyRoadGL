@@ -44,12 +44,12 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 
     if (!IsShaderSuccessful(fragment))
     {
-        std::cout << "ERROR::FRAGMENT::COMPILATION::FAILURE";
+        std::cout << "ERROR::FRAGMENT::COMPILATION::FAILURE\n";
     }
 
     if (!IsShaderSuccessful(vertex))
     {
-        std::cout << "ERROR::VERTEX::COMPILATION::FAILURE";
+        std::cout << "ERROR::VERTEX::COMPILATION::FAILURE\n";
     }
 
     this->ID = glCreateProgram();
@@ -59,7 +59,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 
     if (!IsProgramSuccesful())
     {
-        std::cout << "ERROR::PROGRAM::LINKING::FAILURE";
+        std::cout << "ERROR::PROGRAM::LINKING::FAILURE\n";
     }
 
     glDeleteShader(vertex);
@@ -106,7 +106,7 @@ bool Shader::IsShaderSuccessful(unsigned int shader)
     if (!success)
     {
         glGetShaderInfoLog(shader, 512, nullptr, infoLog);
-        std::cout << "ERROR::SHADER::COMPILATION::FAILED\n";
+        std::cout << infoLog << "\n";
         return false;
     }
     return true;
@@ -117,12 +117,12 @@ bool Shader::IsProgramSuccesful()
     int success;
     char infoLog[512];
 
-    glGetShaderiv(this->ID, GL_COMPILE_STATUS, &success);
+    glGetProgramiv(this->ID, GL_LINK_STATUS, &success);
 
     if (!success)
     {
         glGetProgramInfoLog(this->ID, 512, nullptr, infoLog);
-        std::cout << "ERROR::PROGRAM::LIMKING::FAILED\n";
+        std::cout << infoLog << "\n";
         return false;
     }
     return true;
