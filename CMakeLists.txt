@@ -26,10 +26,12 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include/glad
     ${CMAKE_CURRENT_SOURCE_DIR}/include/glm
     ${CMAKE_CURRENT_SOURCE_DIR}/include/stb_image
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/freetype
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/libglfw3dll.a
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/freetype.dll
 )
 
 if (WIN32)
