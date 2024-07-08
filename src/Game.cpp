@@ -49,11 +49,12 @@ bool Game::Initialize()
     glEnable(GL_DEPTH_TEST);
 
     this->depth = 1;
-    
+    textRenderer = new TextRenderer();
     textureManager = new TextureManager();
     level = new Level();
     player = new Player();
-    score = new Score();
+    score = new Score(textRenderer);
+    resetScene = new ResetScene(textRenderer);
     entities.push_back(player);
     for (depth; depth <= 10; ++depth)
     {
@@ -66,6 +67,24 @@ bool Game::Initialize()
     return true;
 }
 
+void Game::ResetGame()
+{
+    score->ResetScore();
+    this->depth = 1;
+    level = new Level();
+    player = new Player();
+    entities.clear();
+    entities.push_back(player);
+    for (depth; depth <= 10; ++depth)
+    {
+        entities.push_back(new Enemy(Direction::EAST, depth));
+        entities.push_back(new Enemy(Direction::WEST, depth));
+    }
+    
+    camera = new Camera(player);
+    resetScene->Deactivate();
+}
+
 void Game::RunLoop()
 {
     while (!glfwWindowShouldClose(this->window))
@@ -74,7 +93,10 @@ void Game::RunLoop()
         RemoveOOBElements();
         CalculateDelta();
         ProcessInput(this->window);
-        Update();
+        if (!resetScene->isSceneActive())
+        {
+            Update();
+        }
         Draw();
     }
 }
@@ -97,6 +119,10 @@ void Game::ProcessInput(GLFWwindow* window)
     // {
     //     player->SetDirection(Direction::SOUTH);
     // }
+    if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS && resetScene->isSceneActive())
+    {
+        ResetGame();
+    }
 }
 
 void Game::Update()
@@ -106,16 +132,10 @@ void Game::Update()
     {
         entity->Update(deltaTime);
     }
-    // if (this->CheckCollision())
-    // {
-    //     // TODO:
-    //     player->ShowCollision(true);
-    //     // Implement end of the game
-    // }
-    // else
-    // {
-    //     player->ShowCollision(false);
-    // }
+    if (this->CheckCollision())
+    {
+        resetScene->Activate();
+    }
     camera->Update(player, deltaTime);
 }
 
@@ -131,6 +151,10 @@ void Game::Draw()
     }
 
     score->RenderScore();
+    if (resetScene->isSceneActive())
+    {
+        resetScene->RenderScene();
+    }
 
     glfwSwapBuffers(window);
     glfwPollEvents();
