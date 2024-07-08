@@ -19,6 +19,8 @@ add_executable(${PROJECT_NAME}
     src/stb_image.cpp
     src/TextureManager.cpp
     src/Score.cpp
+    src/TextRenderer.cpp
+    src/ResetScene.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

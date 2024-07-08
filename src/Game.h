@@ -1,3 +1,4 @@
+#pragma once
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "Shader.h"
@@ -11,6 +12,8 @@
 #include "TextureManager.h"
 #include <unordered_map>
 #include "Score.h"
+#include "TextRenderer.h"
+#include "ResetScene.h"
 
 class Game
 {
@@ -29,6 +32,7 @@ private:
     bool CheckCollision();
     void GenerateLevel();
     void RemoveOOBElements();
+    void ResetGame();
     GLFWwindow* window;
     Level* level;
     int width;
@@ -36,6 +40,8 @@ private:
     Player* player;
     Camera* camera;
     Score* score;
+    ResetScene* resetScene;
+    TextRenderer* textRenderer;
     TextureManager* textureManager;
     std::vector<Entity*> entities;
     float lastFrame, deltaTime;
