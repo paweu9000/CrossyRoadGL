@@ -2,6 +2,7 @@
 #include "Constants.h"
 #include <iostream>
 #include "TextureManager.h"
+#include "Score.h"
 
 Player::Player()
 {
@@ -75,6 +76,7 @@ void Player::Update(float deltaTime)
         {
         case Direction::NORTH:
             model = glm::rotate(model, glm::radians(90.f), glm::vec3(1.0f, 0.0f, 0.0f));
+            Score::AddScore();
             break;
         case Direction::SOUTH:
             model = glm::rotate(model, glm::radians(-90.f), glm::vec3(1.0f, 0.0f, 0.0f));

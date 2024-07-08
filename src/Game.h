@@ -10,6 +10,7 @@
 #include "Camera.h"
 #include "TextureManager.h"
 #include <unordered_map>
+#include "Score.h"
 
 class Game
 {
@@ -34,6 +35,7 @@ private:
     int height;
     Player* player;
     Camera* camera;
+    Score* score;
     TextureManager* textureManager;
     std::vector<Entity*> entities;
     float lastFrame, deltaTime;

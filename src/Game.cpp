@@ -53,6 +53,7 @@ bool Game::Initialize()
     textureManager = new TextureManager();
     level = new Level();
     player = new Player();
+    score = new Score();
     entities.push_back(player);
     for (depth; depth <= 10; ++depth)
     {
@@ -128,6 +129,8 @@ void Game::Draw()
     {
         entity->Draw(camera->GetView());
     }
+
+    score->RenderScore();
 
     glfwSwapBuffers(window);
     glfwPollEvents();
