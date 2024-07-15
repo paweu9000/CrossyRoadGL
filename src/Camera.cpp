@@ -1,6 +1,6 @@
 #include "Camera.h"
 #include <glm/gtc/matrix_transform.hpp>
-#include "Constants.h"
+#include "Shared/Constants.h"
 
 Camera::Camera(std::shared_ptr<Player> player)
 {

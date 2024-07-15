@@ -1,6 +1,6 @@
 #pragma once
 #include "glm/glm.hpp"
-#include "TextureManager.h"
+#include "../TextureManager.h"
 
 struct Material
 {
