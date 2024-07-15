@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include "Shader.h"
 #include <string>
+#include <memory>
 
 struct Character 
 {
@@ -22,6 +23,6 @@ public:
 protected:
     std::unordered_map<char, Character> characters;
     glm::mat4 projection;
-    Shader* shader;
+    std::unique_ptr<Shader> shader;
     unsigned int VAO, VBO;
 };

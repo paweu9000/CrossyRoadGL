@@ -5,6 +5,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <vector>
+#include <memory>
 #include "Material.h"
 
 class Element
@@ -19,7 +20,7 @@ protected:
     void SetDirectionLight();
     virtual void SetLightning(glm::vec3 viewPos) {}
     std::vector<float> vertices;
-    Shader* shader;
+    std::unique_ptr<Shader> shader;
     unsigned int VBO, VAO;
     glm::mat4 projection;
     glm::mat4 model;

@@ -94,7 +94,7 @@ void LevelElement::BindVertices()
 {
     if (type == ObjectType::LAMP)
     {
-        this->shader = new Shader("src/shaders/lamp_vertex.vs", "src/shaders/lamp_fragment.fs");
+        this->shader = std::make_unique<Shader>("src/Assets/Shaders/lamp_vertex.vs", "src/Assets/Shaders/lamp_fragment.fs");
 
         glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), &vertices.front(), GL_STATIC_DRAW);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
@@ -104,7 +104,7 @@ void LevelElement::BindVertices()
     }
     else
     {
-        this->shader = new Shader("src/shaders/vertex.vs", "src/shaders/fragment.fs");
+        this->shader = std::make_unique<Shader>("src/Assets/Shaders/vertex.vs", "src/Assets/Shaders/fragment.fs");
 
         glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), &vertices.front(), GL_STATIC_DRAW);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
@@ -138,7 +138,7 @@ void LevelElement::SetLightning(glm::vec3 viewPos)
     }
 }
 
-void LevelElement::SetSpotLightning(const std::vector<Entity*> entities)
+void LevelElement::SetSpotLightning(const std::vector<std::shared_ptr<Entity>> entities)
 {
     shader->Use();
     for (int i = 1; i < entities.size(); ++i)
@@ -166,7 +166,7 @@ ObjectType LevelElement::GetType() const
     return this->type;
 }
 
-void LevelElement::SetPointLight(std::vector<LevelElement*> lamps)
+void LevelElement::SetPointLight(const std::vector<std::shared_ptr<LevelElement>> lamps)
 {
     if (type == ObjectType::LAMP) return;
     shader->Use();

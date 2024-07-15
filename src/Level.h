@@ -6,9 +6,9 @@ class Level
 public:
     Level();
     void Update(float playerDepth);
-    void Draw(glm::mat4 view, const std::vector<Entity*> entities);
+    void Draw(glm::mat4 view, const std::vector<std::shared_ptr<Entity>> entities);
     void AddElement(int depth);
 private:
     void RemoveOOBElements(float playerDepth);
-    std::vector<LevelElement*> elements;
+    std::vector<std::shared_ptr<LevelElement>> elements;
 };

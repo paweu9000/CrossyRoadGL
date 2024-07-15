@@ -5,7 +5,7 @@
 
 TextRenderer::TextRenderer()
 {
-    shader = new Shader("src/shaders/text_vertex.vs", "src/shaders/text_fragment.fs");
+    shader = std::make_unique<Shader>("src/Assets/Shaders/text_vertex.vs", "src/Assets/Shaders/text_fragment.fs");
     shader->Use();
     this->projection = glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f);
     shader->SetMat4("projection", this->projection);
@@ -16,7 +16,7 @@ TextRenderer::TextRenderer()
         std::cout << "ERROR::FREETYPE: Could not initialize FreeType Library\n";
     }
     FT_Face face;
-    if (FT_New_Face(ft, "src/fonts/Wittgenstein-Bold.ttf", 0, &face))
+    if (FT_New_Face(ft, "src/Assets/Fonts/Wittgenstein-Bold.ttf", 0, &face))
     {
         std::cout << "ERROR::FREETYPE: Failed to load font\n";
     }

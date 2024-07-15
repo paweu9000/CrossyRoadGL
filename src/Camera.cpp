@@ -2,7 +2,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Constants.h"
 
-Camera::Camera(Player* player)
+Camera::Camera(std::shared_ptr<Player> player)
 {
     this->cameraPos = glm::vec3(0.0f, 20.0f, -5.0f);
     this->cameraTarget = glm::vec3(player->GetModel()[3]);
@@ -14,7 +14,7 @@ Camera::Camera(Player* player)
     );
 }
 
-void Camera::Update(Player* player, float deltaTime)
+void Camera::Update(std::shared_ptr<Player> player, float deltaTime)
 {
     float movement = deltaTime * Constant::PlayerSpeed;
 

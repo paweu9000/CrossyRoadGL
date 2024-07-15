@@ -15,8 +15,8 @@ public:
     void Draw(glm::mat4 view) override;
     void Update();
     void SetLightning(glm::vec3 viewPos) override;
-    void SetSpotLightning(const std::vector<Entity*> entities);
-    void SetPointLight(const std::vector<LevelElement*> lamps);
+    void SetSpotLightning(const std::vector<std::shared_ptr<Entity>> entities);
+    void SetPointLight(const std::vector<std::shared_ptr<LevelElement>> lamps);
     ObjectType GetType() const;
 private:
     void BindVertices();

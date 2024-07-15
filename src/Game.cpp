@@ -49,20 +49,20 @@ bool Game::Initialize()
     glEnable(GL_DEPTH_TEST);
 
     this->depth = 1;
-    textRenderer = new TextRenderer();
-    textureManager = new TextureManager();
-    level = new Level();
-    player = new Player();
-    score = new Score(textRenderer);
-    resetScene = new ResetScene(textRenderer);
-    entities.push_back(player);
+    textRenderer = std::make_shared<TextRenderer>();
+    textureManager = std::make_shared<TextureManager>();
+    level = std::make_unique<Level>();
+    player = std::make_shared<Player>();
+    score = std::make_unique<Score>(textRenderer);
+    resetScene = std::make_unique<ResetScene>(textRenderer);
+    entities.emplace_back(player);
     for (depth; depth <= 10; ++depth)
     {
-        entities.push_back(new Enemy(Direction::EAST, depth));
-        entities.push_back(new Enemy(Direction::WEST, depth));
+        entities.emplace_back(std::make_shared<Enemy>(Direction::EAST, depth));
+        entities.emplace_back(std::make_shared<Enemy>(Direction::WEST, depth));
     }
     
-    camera = new Camera(player);
+    camera = std::make_unique<Camera>(player);
 
     return true;
 }
@@ -71,17 +71,17 @@ void Game::ResetGame()
 {
     score->ResetScore();
     this->depth = 1;
-    level = new Level();
-    player = new Player();
+    level = std::make_unique<Level>();
+    player = std::make_shared<Player>();
     entities.clear();
-    entities.push_back(player);
+    entities.emplace_back(player);
     for (depth; depth <= 10; ++depth)
     {
-        entities.push_back(new Enemy(Direction::EAST, depth));
-        entities.push_back(new Enemy(Direction::WEST, depth));
+        entities.emplace_back(std::make_shared<Enemy>(Direction::EAST, depth));
+        entities.emplace_back(std::make_shared<Enemy>(Direction::WEST, depth));
     }
     
-    camera = new Camera(player);
+    camera = std::make_unique<Camera>(player);
     resetScene->Deactivate();
 }
 
@@ -189,8 +189,8 @@ void Game::GenerateLevel()
     if (player->GetDepth() + (Constant::DepthOffset * 3.f) < depth * Constant::DepthOffset)
     {
         this->level->AddElement(depth);
-        entities.push_back(new Enemy(Direction::EAST, depth));
-        entities.push_back(new Enemy(Direction::WEST, depth));
+        entities.emplace_back(std::make_shared<Enemy>(Direction::EAST, depth));
+        entities.emplace_back(std::make_shared<Enemy>(Direction::WEST, depth));
         ++depth;
     }
 }
@@ -198,7 +198,7 @@ void Game::GenerateLevel()
 void Game::RemoveOOBElements()
 {
     auto player_depth = player->GetDepth();
-    std::vector<Entity*> oob_entities;
+    std::vector<std::shared_ptr<Entity>> oob_entities;
     for (int i = 1; i < entities.size(); ++i)
     {
         if (entities[i]->GetDepth() > player_depth + 60.f)
@@ -209,7 +209,7 @@ void Game::RemoveOOBElements()
 
     for (auto entity : oob_entities)
     {
-        auto iter = std::find(entities.begin(), entities.end(), entity);
+        auto iter = std::find(std::begin(entities), std::end(entities), entity);
         if (iter != entities.end())
         {
             std::iter_swap(iter, entities.end()-1);

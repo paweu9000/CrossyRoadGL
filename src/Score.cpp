@@ -7,7 +7,7 @@
 
 int Score::score = 0;
 
-Score::Score(TextRenderer* textRenderer)
+Score::Score(std::shared_ptr<TextRenderer> textRenderer)
 {
     this->textRenderer = textRenderer;
 }

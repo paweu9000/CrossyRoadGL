@@ -10,9 +10,9 @@ enum class CMove
 class Camera
 {
 public:
-    Camera(Player* player);
+    Camera(std::shared_ptr<Player> player);
     glm::mat4 GetView();
-    void Update(Player* player, float deltaTime);
+    void Update(std::shared_ptr<Player> player, float deltaTime);
 private:
     glm::vec3 cameraPos;
     glm::vec3 cameraTarget;
