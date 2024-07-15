@@ -6,7 +6,7 @@
 #include <GLFW/glfw3.h>
 #include <vector>
 #include <memory>
-#include "Material.h"
+#include "Shared/Material.h"
 
 class Element
 {

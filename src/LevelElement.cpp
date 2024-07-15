@@ -1,8 +1,8 @@
 #include "LevelElement.h"
-#include "Constants.h"
+#include "Shared/Constants.h"
 #include <iostream>
 #include "TextureManager.h"
-#include "Lightning.h"
+#include "Shared/Lightning.h"
 
 LevelElement::LevelElement(ObjectType type, int depth)
 {

@@ -1,5 +1,5 @@
 #include "Enemy.h"
-#include "Constants.h"
+#include "Shared/Constants.h"
 #include <iostream>
 #include <cstdlib>
 #include "TextureManager.h"

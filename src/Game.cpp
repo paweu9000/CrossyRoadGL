@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <iostream>
 #include "Enemy.h"
-#include "Constants.h"
+#include "Shared/Constants.h"
 #include <algorithm>
 #include "stb_image.h"
 
