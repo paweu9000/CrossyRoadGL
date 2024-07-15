@@ -4,11 +4,11 @@
 class Score
 {
 public:
-    Score(TextRenderer* textRenderer);
+    Score(std::shared_ptr<TextRenderer> textRenderer);
     void RenderScore();
     static void AddScore();
     static void ResetScore();
 private:
-    TextRenderer* textRenderer;
+    std::shared_ptr<TextRenderer> textRenderer;
     static int score;
 };

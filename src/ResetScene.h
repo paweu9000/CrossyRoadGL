@@ -4,12 +4,12 @@
 class ResetScene
 {
 public:
-    ResetScene(TextRenderer* textRenderer);
+    ResetScene(std::shared_ptr<TextRenderer> textRenderer);
     void RenderScene();
     void Activate();
     void Deactivate();
     bool isSceneActive();
 private:
-    TextRenderer* textRenderer;
+    std::shared_ptr<TextRenderer> textRenderer;
     bool isActive;
 };

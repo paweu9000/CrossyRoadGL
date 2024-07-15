@@ -21,7 +21,7 @@ Player::Player()
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
-    shader = new Shader("src/shaders/vertex.vs", "src/shaders/fragment.fs");
+    shader = std::make_unique<Shader>("src/Assets/Shaders/vertex.vs", "src/Assets/Shaders/fragment.fs");
 
     shader->Use();
     shader->SetInt("material.diffuse", 1);

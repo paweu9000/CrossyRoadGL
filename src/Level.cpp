@@ -18,10 +18,10 @@ void Level::Update(float playerDepth)
     }
 }
 
-void Level::Draw(glm::mat4 view, const std::vector<Entity*> entities)
+void Level::Draw(glm::mat4 view, const std::vector<std::shared_ptr<Entity>> entities)
 {
     auto viewPos = glm::vec3(view[3][0], view[3][1], view[3][2]);
-    std::vector<LevelElement*> lamps;
+    std::vector<std::shared_ptr<LevelElement>> lamps;
     for (const auto &element : elements)
     {
         if (element->GetType() == ObjectType::LAMP) lamps.push_back(element);
@@ -36,15 +36,15 @@ void Level::Draw(glm::mat4 view, const std::vector<Entity*> entities)
 
 void Level::AddElement(int depth)
 {
-    this->elements.push_back(new LevelElement(ObjectType::GRASS, depth));
-    this->elements.push_back(new LevelElement(ObjectType::ROAD, depth));
-    this->elements.push_back(new LevelElement(ObjectType::LINE, depth));
-    this->elements.push_back(new LevelElement(ObjectType::LAMP, depth));
+    this->elements.push_back(std::make_shared<LevelElement>(ObjectType::GRASS, depth));
+    this->elements.push_back(std::make_shared<LevelElement>(ObjectType::ROAD, depth));
+    this->elements.push_back(std::make_shared<LevelElement>(ObjectType::LINE, depth));
+    this->elements.push_back(std::make_shared<LevelElement>(ObjectType::LAMP, depth));
 }
 
 void Level::RemoveOOBElements(float playerDepth)
 {
-    std::vector<LevelElement *> oobElements;
+    std::vector<std::shared_ptr<LevelElement>> oobElements;
     for (auto element : elements)
     {
         if (element->GetDepth() > playerDepth + 60.f)
@@ -55,7 +55,7 @@ void Level::RemoveOOBElements(float playerDepth)
 
     for (auto element : oobElements)
     {
-        auto iter = std::find(elements.begin(), elements.end(), element);
+        auto iter = std::find(std::begin(elements), std::end(elements), element);
         if (iter != elements.end())
         {
             std::iter_swap(iter, elements.end() - 1);

@@ -17,7 +17,7 @@ void TextureManager::LoadTextures()
         unsigned int textureID;
         glGenTextures(1, &textureID);
         int width, height, nrComponents;
-        std::string path = "src/textures/" + fileName;
+        std::string path = "src/Assets/Textures/" + fileName;
         unsigned char* data = stbi_load(path.c_str(), &width, &height, &nrComponents, 0);
 
         if (data)

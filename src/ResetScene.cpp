@@ -1,6 +1,6 @@
 #include "ResetScene.h"
 
-ResetScene::ResetScene(TextRenderer* renderer)
+ResetScene::ResetScene(std::shared_ptr<TextRenderer> renderer)
 {
     this->isActive = false;
     this->textRenderer = renderer;
